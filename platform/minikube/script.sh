@@ -1,24 +1,14 @@
 minikube start --cpus=4 --memory='16g' --vm-driver=kvm2
-minikube addons enable ingress
-
-kubectl --namespace ingress-nginx wait \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component=controller \
-    --timeout=120s
 
 NS=argocd
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.22.0/install.sh | bash -s v0.22.0
 
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl create -f https://operatorhub.io/install/mongodb-operator.yaml
+kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
 
-sleep 1
-
-kubectl --namespace argocd wait \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component="argocd-application-controller-0" \
-    --timeout=120s
+kubectl create ns argocd
+kubectl apply -f ../../resources/argocd/server.yaml
 
 ## user=admin
 ## password
-# kubectl -n argocd get secret argocd-initial-admin-secret -o json | jq -r ".data.password" | base64 -d
-
+# kubectl -n argocd get secret argocd-cluster -o json | jq -r '.data["admin.password"]' | base64 -d

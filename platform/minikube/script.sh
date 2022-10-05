@@ -18,8 +18,28 @@ curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releas
 kubectl create -f https://operatorhub.io/install/mongodb-operator.yaml
 kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
 
+while  
+	! kubectl -n operators wait \
+		--for condition=established \
+		--timeout=60s \
+		crd/argocds.argoproj.io
+do 
+	echo "⌛ Waiting for CRD creations"
+	sleep 1 
+done
+
+while  
+	! kubectl --namespace operators wait \
+    	--for=condition=ready pod \
+    	--selector=control-plane=controller-manager \
+    	--timeout=60s
+do 
+	echo "⌛ Waiting for ArgoCD controller"
+	sleep 1 
+done
+
 kubectl create ns argocd
-kubectl apply -f ../../resources/argocd/server.yaml
+kubectl apply -f $PWD$FILE_ARGOCD_SERVER
 
 ## user=admin
 ## password

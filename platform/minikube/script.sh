@@ -1,5 +1,7 @@
 PWD=$(pwd)
 FILE_ARGOCD_SERVER=/resources/argocd/server.yaml
+FILE_ARGOCD_BOOTSTRAP=/resources/argocd/bootstrap.yaml
+SLEEP=5
 
 if [[ ! $PWD$FILE_ARGOCD_SERVER ]] ; then
 	echo "❗You must execute the script from root git folder"
@@ -25,7 +27,7 @@ while
 		crd/argocds.argoproj.io
 do 
 	echo "⌛ Waiting for CRD creations"
-	sleep 1 
+	sleep $SLEEP 
 done
 
 while  
@@ -35,11 +37,13 @@ while
     	--timeout=60s
 do 
 	echo "⌛ Waiting for ArgoCD controller"
-	sleep 1 
+	sleep $SLEEP 
 done
 
 kubectl create ns argocd
 kubectl apply -f $PWD$FILE_ARGOCD_SERVER
+
+kubectl apply -f $PWD$FILE_ARGOCD_BOOTSTRAP -n argocd
 
 ## user=admin
 ## password

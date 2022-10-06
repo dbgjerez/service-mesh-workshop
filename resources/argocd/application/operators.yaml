@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: argocd
+    namespace: operators
     server: https://kubernetes.default.svc
   project: operators
   source:

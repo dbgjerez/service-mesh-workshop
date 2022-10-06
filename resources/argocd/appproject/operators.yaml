@@ -8,7 +8,7 @@ spec:
   - group: '*'
     kind: '*'
   destinations:
-  - namespace: 'argocd'
+  - namespace: 'operators'
     server: 'https://kubernetes.default.svc'
   sourceRepos:
   - 'https://github.com/dbgjerez/ta.git'

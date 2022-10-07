@@ -1,4 +1,6 @@
 PWD=$(pwd)
+FILE_ARGOCD_OPERATOR=/resources/operators/argocd-operator.yaml
+FILE_MONGODB_OPERATOR=/resources/operators/mongodb-operator.yaml
 FILE_ARGOCD_SERVER=/resources/argocd/server.yaml
 FILE_ARGOCD_BOOTSTRAP=/resources/argocd/bootstrap.yaml
 SLEEP=5
@@ -10,6 +12,20 @@ else
 	echo "👍 $FILE_ARGOCD_SERVER found"
 fi
 
+if [[ ! $PWD$FILE_ARGOCD_OPERATOR ]] ; then
+	echo "❗You must execute the script from root git folder"
+	exit
+else
+	echo "👍 $FILE_ARGOCD_OPERATOR found"
+fi
+
+if [[ ! $PWD$FILE_MONGODB_OPERATOR ]] ; then
+	echo "❗You must execute the script from root git folder"
+	exit
+else
+	echo "👍 $FILE_MONGODB_OPERATOR found"
+fi
+
 echo "👍 [All checks ok]"
 echo "-------"
 
@@ -17,8 +33,8 @@ minikube start --cpus=4 --memory='16g' --vm-driver=kvm2
 
 curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.22.0/install.sh | bash -s v0.22.0
 
-kubectl create -f https://operatorhub.io/install/mongodb-operator.yaml
-kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
+kubectl create -f $PWD$FILE_ARGOCD_OPERATOR
+kubectl create -f $PWD$FILE_MONGODB_OPERATOR
 
 while  
 	! kubectl -n operators wait \

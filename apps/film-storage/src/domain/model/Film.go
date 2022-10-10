@@ -1,8 +1,10 @@
 package model
 
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
 type Film struct {
-	Id       int64  `json:"id"`
-	Title    string `json:"title"`
-	Duration int8   `json:"duration"`
-	Premium  bool   `json:"premium"`
+	Id       primitive.ObjectID `bson:"_id,omitempty"`
+	Title    string             `bson:"title,omitempty"`
+	Duration int8               `bson:"duration,omitempty"`
+	Premium  bool               `bson:"premium,omitempty"`
 }

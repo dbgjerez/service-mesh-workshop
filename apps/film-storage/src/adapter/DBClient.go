@@ -1,52 +1,35 @@
 package adapter
 
 import (
-	"database/sql"
-	"fmt"
+	"context"
 	"log"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 const (
-	host     = "localhost"
-	port     = 5432
-	user     = "postgres"
-	password = "<password>"
-	dbname   = "<dbname>"
+	uri = "mongodb://localhost:27017"
 )
 
 type DBClient struct {
-	db *sql.DB
+	db *mongo.Client
 }
 
 func DBNewConnection() (dbClient *DBClient) {
-	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-
-	db, err := sql.Open("postgres", psqlconn)
-
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 	if err != nil {
-		log.Fatalf("error opening clover database: %s", err)
+		log.Fatalf("error connectiong to mongo database: %s", err)
 	}
-	return &DBClient{db: db}
-}
-
-func (client *DBClient) Exec(query string) error {
-	return client.Exec(query)
-}
-
-func (client *DBClient) Query(query string) (*sql.Rows, error) {
-	rows, err := client.db.Query(query)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	return rows, err
+	return &DBClient{db: client}
 }
 
 func (client *DBClient) Ping() error {
-	return client.db.Ping()
+	return client.db.Ping(context.TODO(), readpref.Primary())
 }
 
 func (client *DBClient) Close() {
-	client.db.Close()
+	client.db.Disconnect(context.TODO())
 	log.Println("closing db connection")
 }

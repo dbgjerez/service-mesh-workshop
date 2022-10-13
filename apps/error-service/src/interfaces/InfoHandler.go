@@ -13,20 +13,20 @@ const (
 	serviceName    = "SERVICE_NAME"
 )
 
-type StatusHandler struct {
-	status dto.Status
+type InfoHandler struct {
+	info *dto.Info
 }
 
-func NewStatusHandler() (statusHandler *StatusHandler) {
+func NewInfoHandler() (infoHandler *InfoHandler) {
 	app := dto.App{}
 	app.Version = os.Getenv(serviceVersion)
 	app.Service = os.Getenv(serviceName)
-	status := dto.Status{App: app}
-	return &StatusHandler{status: status}
+	info := dto.Info{App: app}
+	return &InfoHandler{info: &info}
 }
 
-func (handler *StatusHandler) StatusGetHandler() func(c *gin.Context) {
+func (handler *InfoHandler) InfoGetHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
-		c.JSON(http.StatusOK, handler.status)
+		c.JSON(http.StatusOK, handler.info)
 	}
 }

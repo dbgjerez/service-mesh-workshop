@@ -15,8 +15,8 @@ func main() {
 		h := interfaces.HealthcheckHandler{}
 		v1.GET("/health", h.HealthcheckGetHandler())
 
-		s := interfaces.NewStatusHandler()
-		v1.GET("/status", s.StatusGetHandler())
+		s := interfaces.NewInfoHandler()
+		v1.GET("/info", s.InfoGetHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {

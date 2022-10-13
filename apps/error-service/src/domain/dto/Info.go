@@ -1,6 +1,6 @@
 package dto
 
-type Status struct {
+type Info struct {
 	App App `json:"app"`
 }
 

@@ -1,10 +1,10 @@
 package dto
 
 type Status struct {
-	app App
+	App App `json:"app"`
 }
 
 type App struct {
-	service string
-	version string
+	Service string `json:"name"`
+	Version string `json:"version"`
 }

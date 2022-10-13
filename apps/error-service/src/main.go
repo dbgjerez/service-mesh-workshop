@@ -8,11 +8,15 @@ import (
 
 func main() {
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
 
 	v1 := router.Group("/api/v1")
 	{
 		h := interfaces.HealthcheckHandler{}
 		v1.GET("/health", h.HealthcheckGetHandler())
+
+		s := interfaces.NewStatusHandler()
+		v1.GET("/status", s.StatusGetHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {

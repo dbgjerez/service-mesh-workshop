@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import './appinfo.scss'
 
-const AppInfo = () => {
+const AppInfo = (conn) => {
 
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/info")
+        fetch(conn.conn.url)
             .then(res => res.json())
             .then(
                 (result) => (

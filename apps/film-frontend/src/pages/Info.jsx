@@ -1,16 +1,15 @@
 import AppInfo from "../components/info/AppInfo";
 
-const apps = [{
-    "name": "Prueba",
-    "version": "1.1"
-},{
-    "name": "Prueba",
-    "version": "1.2"
-},]
+const connections = [
+    {
+        "service": "Prueba",
+        "url": "http://localhost:8080/api/v1/info"
+    },
+]
 
 const Info = () => {
-    return apps.map(
-        app => <div><AppInfo app={app} /></div>
+    return connections.map(
+        conn => <div><AppInfo conn={conn} /></div>
     )
 };
 

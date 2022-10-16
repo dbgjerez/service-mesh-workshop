@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Build container
+```bash
+podman build -t film-frontend:0.1-SNAPSHOT -f Containerfile.run
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,10 +1,14 @@
+# Container
+
+https://hub.docker.com/repository/docker/b0rr3g0/film-frontend/general
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Build container
 ```bash
-podman build -t film-frontend:0.1-SNAPSHOT -f Containerfile.run
+podman build -t b0rr3g0/film-frontend:0.1-SNAPSHOT -f Containerfile.run
 ```
 
 ## Available Scripts

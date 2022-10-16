@@ -23,7 +23,12 @@ const AppInfo = (conn) => {
     }, [])
 
     if (error){
-        return <div>Error: {error.message}</div>;
+        return (
+            <div className="app">
+                <p className='app__name'>{conn.conn.service}</p>
+                <p className='app__version'>{error.message}</p>
+            </div>
+            );
     } else if (!isLoaded){
         return <div>Loading...</div>;   
     } else {

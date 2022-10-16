@@ -1,0 +1,6 @@
+[
+    {
+        "service": "error-service",
+        "url": "http://error-service/api/v1/info"
+    }
+]

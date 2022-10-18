@@ -4,21 +4,21 @@ metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    name: {{ .Values.service.name }}
-    namespace: {{ .Release.Namespace }}
-    version: {{ .Values.service.version }}
+    name: {{ .Values.service.name | quote }}
+    ns: {{ .Release.Namespace | quote }}
+    version: {{ .Values.service.version | quote }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      name: {{ .Values.service.name }}
-      namespace: {{ .Release.Namespace }}
+      name: {{ .Values.service.name | quote }}
+      ns: {{ .Release.Namespace | quote }}
   template:
     metadata:
       labels:
-        name: {{ .Values.service.name }}
-        namespace: {{ .Release.Namespace }}
-        version: {{ .Values.service.version }}
+        name: {{ .Values.service.name | quote }}
+        ns: {{ .Release.Namespace | quote }}
+        version: {{ .Values.service.version | quote }}
     spec:
       containers:
         - name: {{ .Values.service.name }}

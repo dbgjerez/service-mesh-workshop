@@ -26,5 +26,8 @@ spec:
         repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
         path: apps/film-frontend/gitops
         targetRevision: develop
+        helm:
+          valueFiles:
+            - '{{env}}.values.yaml'
       syncPolicy:
         automated: {}

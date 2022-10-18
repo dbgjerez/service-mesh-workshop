@@ -23,7 +23,7 @@ spec:
         namespace: '{{namespace}}'
         name: 'in-cluster'
       source:
-        repoURL: 'git@github.com:dbgjerez/service-mesh-workshop.git'
+        repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
         path: apps/film-frontend/gitops
         targetRevision: develop
       syncPolicy:

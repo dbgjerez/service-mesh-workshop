@@ -4,3 +4,4 @@ resources:
   - operators.yaml
   - app-mongodb.yaml
   - film-frontend.yaml
+  - error-service.yaml

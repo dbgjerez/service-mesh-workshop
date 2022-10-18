@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - operators.yaml
   - proj-bbdd.yaml
+  - dev.yaml

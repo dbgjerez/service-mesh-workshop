@@ -4,7 +4,8 @@ service:
   version: 0.1
 
 config:
-  - name: SERVICE_NAME
-    value: error-service
-  - name: SERVICE_VERSION
-    value: 0.1
+  env:
+    - name: SERVICE_NAME
+      value: error-service
+    - name: SERVICE_VERSION
+      value: 0.1

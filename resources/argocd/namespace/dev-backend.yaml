@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     app.kubernetes.io/managed-by: argocd
-  name: dev
+  name: dev-backend

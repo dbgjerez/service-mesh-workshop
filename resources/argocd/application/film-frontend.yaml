@@ -14,7 +14,7 @@ spec:
       name: '{{env}}-film-frontend'
       labels: 
         env: '{{env}}'
-        scope: front
+        scope: frontend
         type: app
         name: 'film-frontend'
     spec:

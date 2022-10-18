@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ns-operators.yaml
   - ns-mongodb.yaml
+  - dev.yaml

@@ -1,11 +1,14 @@
 service:
   name: error-service
   image: b0rr3g0/error-service
-  version: 0.1.2
+  version: 0.1.3
+
+deployment:
+  replicas: 1
 
 config:
   env:
     - name: SERVICE_NAME
       value: error-service
     - name: SERVICE_VERSION
-      value: 0.1.2
+      value: 0.1.3

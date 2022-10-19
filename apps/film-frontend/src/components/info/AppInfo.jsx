@@ -10,7 +10,10 @@ const AppInfo = (conn) => {
     useEffect(() => {
         fetch(conn.conn.url, {
             mode: 'no-cors',
-            cache: 'no-cache'
+            cache: 'no-cache',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
         })
             .then(res => res.json())
             .then(

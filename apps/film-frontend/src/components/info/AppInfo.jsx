@@ -12,8 +12,9 @@ const AppInfo = (conn) => {
             mode: 'no-cors',
             cache: 'no-cache',
             headers: {
-                'Access-Control-Allow-Origin': '*'
-            }
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': ''
+            },
         })
             .then(res => res.json())
             .then(

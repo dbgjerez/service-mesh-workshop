@@ -10,11 +10,11 @@ metadata:
 spec:
   ports:
   - name: http
-    port: {{ .Values.deployment.port }}
+    port: 80
     protocol: TCP
     targetPort: {{ .Values.deployment.port }}
   selector:
-    deployment: {{ .Values.service.name }}
+    name: {{ .Values.service.name | quote }}
     ns: {{ .Release.Namespace | quote }}
 status:
   loadBalancer: {}

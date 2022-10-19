@@ -8,7 +8,10 @@ const AppInfo = (conn) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(conn.conn.url, {mode: 'no-cors'})
+        fetch(conn.conn.url, {
+            mode: 'no-cors',
+            cache: 'no-cache'
+        })
             .then(res => res.json())
             .then(
                 (result) => (

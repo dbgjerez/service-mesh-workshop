@@ -1,7 +1,7 @@
 service:
   name: film-frontend
   image: b0rr3g0/film-frontend
-  version: 0.1.7
+  version: 0.1.8
 
 deployment:
   port: 80
@@ -14,4 +14,4 @@ config:
     - name: SERVICE_NAME
       value: film-frontend
     - name: SERVICE_VERSION
-      value: 0.1.7
+      value: 0.1.8

@@ -24,6 +24,7 @@ func CORS() gin.HandlerFunc {
 func main() {
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
+	router.Use(CORS())
 
 	v1 := router.Group("/api/v1", cors.Default())
 	{

@@ -1,9 +1,10 @@
 service:
   name: film-frontend
   image: b0rr3g0/film-frontend
-  version: 0.1.8
+  version: 0.1.9
 
 deployment:
+  replicas: 1
   port: 80
   health:
     liveness: /
@@ -14,4 +15,4 @@ config:
     - name: SERVICE_NAME
       value: film-frontend
     - name: SERVICE_VERSION
-      value: 0.1.8
+      value: 0.1.9

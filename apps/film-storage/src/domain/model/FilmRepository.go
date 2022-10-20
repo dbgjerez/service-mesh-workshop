@@ -6,12 +6,6 @@ import (
 	"log"
 )
 
-const (
-	QueryInsertOne = `insert into film(title, duration, premium) values($1, $2, $3)`
-	QuerySelectOne = `select * from film where id = $1`
-	QuerySelectAll = `insert into film(title, duration, premium) values($1, $2, $3)`
-)
-
 type FilmRepository struct {
 	db *adapter.DBClient
 }

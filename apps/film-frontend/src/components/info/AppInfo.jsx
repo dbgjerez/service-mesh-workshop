@@ -8,13 +8,7 @@ const AppInfo = (conn) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(conn.conn.url, {
-            'mode': 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
-            },
-        })
+        fetch(conn.conn.url)
             .then(res => res.json())
             .then(
                 (result) => (

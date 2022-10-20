@@ -1,6 +1,6 @@
 [
     {
         "service": "error-service",
-        "url": "http://error-service.dev-backend.svc.cluster.local/api/v1/info"
+        "url": "http://error-service.dev-backend.k8s/api/v1/info"
     }
 ]

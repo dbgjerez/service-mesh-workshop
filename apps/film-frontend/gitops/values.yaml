@@ -11,8 +11,8 @@ deployment:
     readiness: /api/v1/health
   resources: 
     limits:
-      cpu: 250m
-      memory: 64Mi
+      cpu: 500m
+      memory: 512Mi
     requests:
       cpu: 100m
       memory: 16Mi

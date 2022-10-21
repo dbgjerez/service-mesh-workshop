@@ -2,14 +2,14 @@ package main
 
 import (
 	"context"
+	"film-storage/adapter"
+	"film-storage/domain/model"
+	"film-storage/interfaces"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"ta-candle-store/adapter"
-	"ta-candle-store/domain/model"
-	"ta-candle-store/interfaces"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,20 +18,22 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	db := adapter.DBNewConnection()
-	candleRespository := model.NewCandleRepository(db)
-
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
+
+	db := adapter.DBNewConnection()
+	filmRespository := model.NewRepository(db)
 
 	v1 := router.Group("/api/v1")
 	{
-		h := interfaces.HealthcheckHandler{}
+		h := interfaces.NewHealthcheckHandler(filmRespository)
 		v1.GET("/health", h.HealthcheckGetHandler())
 	}
-	candle := router.Group("/api/v1/candle")
+
+	film := router.Group("/api/v1/film")
 	{
-		h := interfaces.NewCandleController(candleRespository)
-		candle.GET("/:id", h.GetCandle)
+		f := interfaces.NewFilmHandler(filmRespository)
+		film.GET("", f.FilmGetAllHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {
@@ -51,7 +53,7 @@ func main() {
 
 	<-ctx.Done()
 	srv.Shutdown(ctx)
-	mq.Close()
 	db.Close()
 	os.Exit(0)
+
 }

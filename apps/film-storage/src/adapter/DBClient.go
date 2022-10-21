@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"go.mongodb.org/mongo-driver/event"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -24,6 +25,14 @@ func MongoNewConnection() (db *Mongo) {
 	options := options.
 		Client().
 		ApplyURI(host)
+	if os.Getenv("MONGODB_MONITOR") == "true" {
+		cmdMonitor := &event.CommandMonitor{
+			Started: func(_ context.Context, evt *event.CommandStartedEvent) {
+				log.Print(evt.Command)
+			},
+		}
+		options.SetMonitor(cmdMonitor)
+	}
 	client, err := mongo.Connect(context.TODO(), options)
 	if err != nil {
 		log.Fatalf("Error connectiong to mongo database: %s", err)

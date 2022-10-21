@@ -1,8 +1,11 @@
 package model
 
 import (
+	"context"
 	"film-storage/adapter"
+	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -20,6 +23,30 @@ func NewRepository(db *adapter.DBClient) *FilmRepository {
 
 func (dao *FilmRepository) HealthCheck() error {
 	return dao.db.Ping()
+}
+
+func (dao *FilmRepository) GetAll() ([]Film, error) {
+	ctx, cancel := initContext()
+	defer cancel()
+	cursor, err := dao.collection.Find(ctx, bson.M{})
+
+	if err != nil {
+		return []Film{}, err
+	}
+
+	filmList := []Film{}
+	for cursor.Next(ctx) {
+		var f Film
+		err = cursor.Decode(&f)
+		filmList = append(filmList, f)
+	}
+
+	return filmList, nil
+}
+
+func initContext() (context.Context, context.CancelFunc) {
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+	return ctx, cancel
 }
 
 /*

@@ -1,11 +1,6 @@
 package service
 
-import (
-	"encoding/json"
-	"log"
-	"ta-candle-store/domain/model"
-)
-
+/*
 func MapMsgToCandle(msg []byte) (model.Candle, error) {
 	candleBfx, err := MapMsgToCandleBitfinex(msg)
 	var candle model.Candle
@@ -25,4 +20,4 @@ func MapMsgToCandleBitfinex(msg []byte) (model.CandleBitfinex, error) {
 	var candle model.CandleBitfinex
 	err := json.Unmarshal(msg, &candle)
 	return candle, err
-}
+} */

@@ -3,33 +3,51 @@ package adapter
 import (
 	"context"
 	"log"
+	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-const (
-	uri = "mongodb://localhost:27017"
-)
+type Mongo struct {
+	conn *mongo.Client
+}
 
 type DBClient struct {
-	db *mongo.Client
+	mongo Mongo
+	db    *mongo.Database
+}
+
+func MongoNewConnection() (db *Mongo) {
+	host := os.Getenv("MONGODB_HOST")
+	options := options.
+		Client().
+		ApplyURI(host)
+	client, err := mongo.Connect(context.TODO(), options)
+	if err != nil {
+		log.Fatalf("Error connectiong to mongo database: %s", err)
+	}
+	return &Mongo{conn: client}
 }
 
 func DBNewConnection() (dbClient *DBClient) {
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
-	if err != nil {
-		log.Fatalf("error connectiong to mongo database: %s", err)
-	}
-	return &DBClient{db: client}
+	mongo := MongoNewConnection()
+
+	mongoDBName := os.Getenv("MONGODB_DB_NAME")
+	db := mongo.conn.Database(mongoDBName)
+	return &DBClient{db: db, mongo: *mongo}
+}
+
+func (client *DBClient) Collection(name string) *mongo.Collection {
+	return client.db.Collection(name)
 }
 
 func (client *DBClient) Ping() error {
-	return client.db.Ping(context.TODO(), readpref.Primary())
+	return client.mongo.conn.Ping(context.Background(), readpref.Primary())
 }
 
 func (client *DBClient) Close() {
-	client.db.Disconnect(context.TODO())
+	client.mongo.conn.Disconnect(context.Background())
 	log.Println("closing db connection")
 }

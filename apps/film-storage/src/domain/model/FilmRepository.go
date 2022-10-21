@@ -2,23 +2,32 @@ package model
 
 import (
 	"film-storage/adapter"
-	"fmt"
-	"log"
+
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
+var collectionName = "movies"
+
 type FilmRepository struct {
-	db *adapter.DBClient
+	db         *adapter.DBClient
+	collection *mongo.Collection
 }
 
 func NewRepository(db *adapter.DBClient) *FilmRepository {
-	return &FilmRepository{db: db}
+	collection := db.Collection(collectionName)
+	return &FilmRepository{db: db, collection: collection}
 }
 
+func (dao *FilmRepository) HealthCheck() error {
+	return dao.db.Ping()
+}
+
+/*
 func (dao *FilmRepository) InsertOne(film Film) error {
-
+	dao.db.
 }
 
-func (dao *CandleRepository) FindAllByType(symbol string) []Candle {
+func (dao *FilmRepository) FindAllByType(symbol string) []Candle {
 	query := dao.db.Query(CollectionName).Where(c.Field("symbol").Eq(symbol))
 	docs := dao.db.FindAllByCriteria(query)
 	var candle *Candle
@@ -31,7 +40,7 @@ func (dao *CandleRepository) FindAllByType(symbol string) []Candle {
 	return candles
 }
 
-func (dao *CandleRepository) FindCandle(symbol string, market string, precision string, ts int64) (*Candle, error) {
+func (dao *FilmRepository) FindCandle(symbol string, market string, precision string, ts int64) (*Candle, error) {
 	query := dao.db.Query(CollectionName).
 		Where((*c.Criteria)(c.Field("symbol").Eq(symbol).
 			And((*c.Criteria)(c.Field("market").Eq(market))).
@@ -49,7 +58,7 @@ func (dao *CandleRepository) FindCandle(symbol string, market string, precision 
 	}
 }
 
-func (dao *CandleRepository) Save(candle *Candle) error {
+func (dao *FilmRepository) Save(candle *Candle) error {
 	c, err := dao.FindCandle(candle.Symbol, candle.Market, candle.Precision, candle.Ts)
 	if err != nil {
 		log.Printf("error saving a document %s", err)
@@ -66,7 +75,7 @@ func (dao *CandleRepository) Save(candle *Candle) error {
 	return nil
 }
 
-func (dao *CandleRepository) UpdateOne(candle *Candle) error {
+func (dao *FilmRepository) UpdateOne(candle *Candle) error {
 	return dao.db.Query(CollectionName).
 		Where((*c.Criteria)(c.Field("_id").Eq(candle.Id))).Update(convert(candle))
-}
+} */

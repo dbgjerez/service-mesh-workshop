@@ -34,6 +34,7 @@ func main() {
 	{
 		f := interfaces.NewFilmHandler(filmRespository)
 		film.GET("", f.FilmGetAllHandler())
+		film.POST("", f.FilmCreateHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {

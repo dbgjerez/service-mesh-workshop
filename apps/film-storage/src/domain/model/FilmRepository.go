@@ -2,6 +2,7 @@ package model
 
 import (
 	"context"
+	"errors"
 	"film-storage/adapter"
 	"time"
 
@@ -42,6 +43,19 @@ func (dao *FilmRepository) GetAll() ([]Film, error) {
 	}
 
 	return filmList, nil
+}
+
+func (dao *FilmRepository) CreateOne(film Film) (Film, error) {
+	ctx, cancel := initContext()
+	defer cancel()
+	r, err := dao.collection.InsertOne(ctx, film)
+	if err != nil || r.InsertedID == nil {
+		if err == nil {
+			return film, errors.New("No object id")
+		}
+		return film, err
+	}
+	return film, nil
 }
 
 func initContext() (context.Context, context.CancelFunc) {

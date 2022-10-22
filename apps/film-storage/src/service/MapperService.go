@@ -1,23 +1,17 @@
 package service
 
-/*
-func MapMsgToCandle(msg []byte) (model.Candle, error) {
-	candleBfx, err := MapMsgToCandleBitfinex(msg)
-	var candle model.Candle
-	candle.Close = candleBfx.Close
-	candle.High = candleBfx.High
-	candle.Low = candleBfx.Low
-	candle.Open = candleBfx.Open
-	candle.Precision = candleBfx.Resolution
-	candle.Symbol = candleBfx.Symbol
-	candle.Ts = candleBfx.MTS
-	candle.Volume = candleBfx.Volume
-	log.Printf("new candle mapped: %v", candle)
-	return candle, err
-}
+import (
+	"film-storage/domain/dto"
+	"film-storage/domain/model"
 
-func MapMsgToCandleBitfinex(msg []byte) (model.CandleBitfinex, error) {
-	var candle model.CandleBitfinex
-	err := json.Unmarshal(msg, &candle)
-	return candle, err
-} */
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+func FilmCreateDTOToFilm(dto dto.FilmCreateDTO) model.Film {
+	return model.Film{
+		Id:       primitive.NewObjectID(),
+		Title:    dto.Title,
+		Duration: int8(dto.Duration),
+		Premium:  dto.Premium,
+	}
+}

@@ -1,5 +1,5 @@
 .sidebar {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     height: 100vh;
@@ -29,7 +29,7 @@
             transition: color 0.3s ease-in-out;
 
             &.active {
-                color: #fff;
+                color: rgb(0, 0, 0);
             }
 
             &__icon {

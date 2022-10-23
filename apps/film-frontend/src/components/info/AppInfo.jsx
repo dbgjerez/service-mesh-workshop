@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Grid } from "semantic-ui-react";
 import './appinfo.scss'
 
 export const Timeout = (time) => {
@@ -32,19 +33,23 @@ const AppInfo = (conn) => {
 
     if (error){
         return (
-            <div className="app">
-                <p className='app__name'>{conn.conn.service}</p>
-                <p className='app__version'>{error.message}</p>
-            </div>
+            <Grid>
+                <div className="app">
+                    <p className='app__name'>{conn.conn.service}</p>
+                    <p className='app__version'>{error.message}</p>
+                </div>
+            </Grid>
             );
     } else if (!isLoaded){
         return <div>Loading...</div>;   
     } else {
         return (
-            <div className="app">
-                <p className='app__name'>{data.app.name}</p>
-                <p className='app__version'>{data.app.version}</p>
-            </div>
+            <Grid>
+                <div className="app">
+                    <p className='app__name'>{data.app.name}</p>
+                    <p className='app__version'>{data.app.version}</p>
+                </div>
+            </Grid>
             );
     }
 };

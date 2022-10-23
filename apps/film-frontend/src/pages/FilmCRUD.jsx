@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Checkbox, Form, Grid, Segment } from 'semantic-ui-react'
 
 const FilmCRUD = () => (
-    <Segment placeholder>
         <Form>
             <Form.Input
                 icon='pencil alternate'
@@ -25,7 +24,6 @@ const FilmCRUD = () => (
             />
             <Button type='submit'>Submit</Button>
         </Form>
-    </Segment>
 )
 
 export default FilmCRUD

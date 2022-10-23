@@ -46,9 +46,6 @@ const Sidebar = () => {
     }, [location]);
 
     return <div className='sidebar'>
-        <div className="sidebar__logo">
-            b0rr3g0
-        </div>
         <div ref={sidebarRef} className="sidebar__menu">
             <div
                 ref={indicatorRef}

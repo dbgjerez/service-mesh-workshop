@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import './appinfo.scss'
 
+export const Timeout = (time) => {
+	let controller = new AbortController();
+	setTimeout(() => controller.abort(), time * 1000);
+	return controller;
+};
+
 const AppInfo = (conn) => {
 
     const [error, setError] = useState(null)
@@ -8,7 +14,9 @@ const AppInfo = (conn) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(conn.conn.url)
+        fetch(conn.conn.url, {
+            signal: Timeout(1).signal
+        })
             .then(res => res.json())
             .then(
                 (result) => (

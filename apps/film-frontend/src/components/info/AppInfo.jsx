@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Grid } from "semantic-ui-react";
-import './appinfo.scss'
+import { Grid, Header, Icon } from "semantic-ui-react";
+//import './appinfo.scss'
 
 export const Timeout = (time) => {
 	let controller = new AbortController();
@@ -31,27 +31,31 @@ const AppInfo = (conn) => {
             )
     }, [])
 
-    if (error){
-        return (
-            <Grid>
-                <div className="app">
-                    <p className='app__name'>{conn.conn.service}</p>
-                    <p className='app__version'>{error.message}</p>
-                </div>
-            </Grid>
-            );
-    } else if (!isLoaded){
-        return <div>Loading...</div>;   
+    if (!isLoaded){
+        return <div>Loading...</div>;
     } else {
         return (
-            <Grid>
-                <div className="app">
-                    <p className='app__name'>{data.app.name}</p>
-                    <p className='app__version'>{data.app.version}</p>
-                </div>
-            </Grid>
-            );
-    }
+        <Grid celled>
+            <Grid.Row verticalAlign='middle'>
+                <Grid.Column width={2}>
+                    <Header as='h4' icon textAlign='center'>
+                        <Icon name={error ? 'thumbs down outline' : 'thumbs up outline'} />
+                    </Header>
+                </Grid.Column>
+                <Grid.Column width={3}>
+                    <Header as='h2' icon textAlign='center'>
+                        <Header.Content>{error ? conn.conn.service : data.app.name}</Header.Content>
+                    </Header>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                    <Header as='h2' icon textAlign='left'>
+                        <Header.Content>{error ? error.message : data.app.version}</Header.Content>
+                    </Header>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
+        );
+    } 
 };
 
 export default AppInfo;

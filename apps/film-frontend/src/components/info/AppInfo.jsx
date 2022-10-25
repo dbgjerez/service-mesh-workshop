@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Grid, Header, Icon } from "semantic-ui-react";
-//import './appinfo.scss'
 
 export const Timeout = (time) => {
 	let controller = new AbortController();
@@ -13,13 +12,18 @@ const AppInfo = (conn) => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
+    const [httpCode, setHttpCode] = useState([]);
 
     useEffect(() => {
         fetch(conn.conn.url, {
             signal: Timeout(1).signal
-        })
-            .then(res => res.json())
+        })  
             .then(
+                (res) => {
+                    if(!res.ok) throw new Error(res.status)
+                    else return res.json()
+                }
+            ).then(
                 (result) => (
                     setIsLoaded(true),
                     setData(result)
@@ -44,7 +48,11 @@ const AppInfo = (conn) => {
                 </Grid.Column>
                 <Grid.Column width={3}>
                     <Header as='h2' icon textAlign='center'>
-                        <Header.Content>{error ? conn.conn.service : data.app.name}</Header.Content>
+                        <Header.Content>
+                            {error ? 
+                            (httpCode !== '200' ? conn.conn.service : data.app.name) : 
+                            data.app.name}
+                        </Header.Content>
                     </Header>
                 </Grid.Column>
                 <Grid.Column width={6}>

@@ -1,5 +1,5 @@
 import AppInfo from "../components/info/AppInfo";
-import connections from "../config/app.error.config.json"
+import connections from "../config/app.info.config.json"
 
 const Info = () => {
     return (

@@ -44,10 +44,10 @@ const FilmCRUD = (config) => {
                                     data.map((data)=> {
                                         return (
                                             <Table.Row>
-                                                <Table.Cell>{data.Title}</Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
+                                                <Table.Cell>{data.title}</Table.Cell>
+                                                <Table.Cell>{data.efficacy}</Table.Cell>
+                                                <Table.Cell>{data.duration}</Table.Cell>
+                                                <Table.Cell>{data.premium ? "SI" : "NO"}</Table.Cell>
                                             </Table.Row>
                                         )
                                     }) : 

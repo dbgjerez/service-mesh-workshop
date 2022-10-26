@@ -32,7 +32,16 @@ func (handler *FilmHandler) FilmGetAllHandler() func(c *gin.Context) {
 			// TODO: exception error
 			log.Fatalf("Error al recuperar %s", err)
 		}
-		c.JSON(http.StatusOK, list)
+		res := []dto.FilmDTO{}
+		for _, f := range list {
+			res = append(res, dto.FilmDTO{
+				Id:       f.Id.Hex(),
+				Duration: int(f.Duration),
+				Premium:  f.Premium,
+				Title:    f.Title,
+			})
+		}
+		c.JSON(http.StatusOK, res)
 	}
 }
 

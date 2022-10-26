@@ -11,7 +11,7 @@ func FilmCreateDTOToFilm(dto dto.FilmCreateDTO) model.Film {
 	return model.Film{
 		Id:       primitive.NewObjectID(),
 		Title:    dto.Title,
-		Duration: int8(dto.Duration),
+		Duration: dto.Duration,
 		Premium:  dto.Premium,
 	}
 }

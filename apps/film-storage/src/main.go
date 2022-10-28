@@ -36,6 +36,7 @@ func main() {
 	{
 		f := interfaces.NewFilmHandler(filmRespository)
 		film.GET("", f.FilmGetAllHandler())
+		film.GET("/:id", f.FilmFindByIdHandler())
 		film.POST("", f.FilmCreateHandler())
 	}
 

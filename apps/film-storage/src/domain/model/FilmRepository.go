@@ -4,13 +4,18 @@ import (
 	"context"
 	"errors"
 	"film-storage/adapter"
+	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-var collectionName = "movies"
+const (
+	idKeyName      string = "_id"
+	collectionName string = "movies"
+)
 
 type FilmRepository struct {
 	db         *adapter.DBClient
@@ -24,6 +29,27 @@ func NewRepository(db *adapter.DBClient) *FilmRepository {
 
 func (dao *FilmRepository) HealthCheck() error {
 	return dao.db.Ping()
+}
+
+func (dao *FilmRepository) FindById(idFilm string) (*Film, error) {
+	ctx, cancel := initContext()
+	defer cancel()
+	log.Printf("Query: %s", bson.D{primitive.E{Key: idKeyName, Value: idFilm}})
+	id, err := primitive.ObjectIDFromHex(idFilm)
+	if err != nil {
+		return nil, err
+	}
+	cur := dao.collection.FindOne(ctx, bson.M{idKeyName: id})
+	if cur.Err() != nil {
+		log.Printf("Error: %v", cur.Err())
+		return nil, cur.Err()
+	}
+	var f Film
+	err = cur.Decode(&f)
+	if err != nil {
+		return nil, err
+	}
+	return &f, nil
 }
 
 func (dao *FilmRepository) GetAll() ([]Film, error) {

@@ -25,6 +25,25 @@ func NewFilmHandler(dao *model.FilmRepository) *FilmHandler {
 	return &FilmHandler{repository: dao}
 }
 
+func (handler *FilmHandler) FilmFindByIdHandler() func(c *gin.Context) {
+	return func(c *gin.Context) {
+		filmId := c.Param(ParamIDName)
+		log.Print("id: ", filmId)
+		f, err := handler.repository.FindById(filmId)
+		if err != nil {
+			// TODO: exception error
+			log.Fatalf("Error al recuperar %s", err)
+		}
+		film := dto.FilmDTO{
+			Id:       f.Id.Hex(),
+			Duration: int(f.Duration),
+			Premium:  f.Premium,
+			Title:    f.Title,
+		}
+		c.JSON(http.StatusOK, film)
+	}
+}
+
 func (handler *FilmHandler) FilmGetAllHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		list, err := handler.repository.GetAll()

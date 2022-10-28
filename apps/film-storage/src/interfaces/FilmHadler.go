@@ -28,7 +28,6 @@ func NewFilmHandler(dao *model.FilmRepository) *FilmHandler {
 func (handler *FilmHandler) FilmFindByIdHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		filmId := c.Param(ParamIDName)
-		log.Print("id: ", filmId)
 		f, err := handler.repository.FindById(filmId)
 		if err != nil {
 			// TODO: exception error
@@ -41,6 +40,18 @@ func (handler *FilmHandler) FilmFindByIdHandler() func(c *gin.Context) {
 			Title:    f.Title,
 		}
 		c.JSON(http.StatusOK, film)
+	}
+}
+
+func (handler *FilmHandler) FilmDeleteByIdHandler() func(c *gin.Context) {
+	return func(c *gin.Context) {
+		filmId := c.Param(ParamIDName)
+		err := handler.repository.DeleteById(filmId)
+		if err != nil {
+			// TODO: exception error
+			log.Fatalf("Error al recuperar %s", err)
+		}
+		c.JSON(204, nil)
 	}
 }
 

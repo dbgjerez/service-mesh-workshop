@@ -31,10 +31,23 @@ func (dao *FilmRepository) HealthCheck() error {
 	return dao.db.Ping()
 }
 
+func (dao *FilmRepository) DeleteById(idFilm string) error {
+	ctx, cancel := initContext()
+	defer cancel()
+	id, err := primitive.ObjectIDFromHex(idFilm)
+	if err != nil {
+		return err
+	}
+	_, err = dao.collection.DeleteOne(ctx, bson.M{idKeyName: id})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (dao *FilmRepository) FindById(idFilm string) (*Film, error) {
 	ctx, cancel := initContext()
 	defer cancel()
-	log.Printf("Query: %s", bson.D{primitive.E{Key: idKeyName, Value: idFilm}})
 	id, err := primitive.ObjectIDFromHex(idFilm)
 	if err != nil {
 		return nil, err

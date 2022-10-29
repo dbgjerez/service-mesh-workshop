@@ -51,7 +51,7 @@ func (handler *FilmHandler) FilmDeleteByIdHandler() func(c *gin.Context) {
 			// TODO: exception error
 			log.Fatalf("Error al recuperar %s", err)
 		}
-		c.JSON(204, nil)
+		c.JSON(http.StatusOK, nil)
 	}
 }
 

@@ -12,3 +12,5 @@ podman build \
     -t b0rr3g0/error-service:$VERSION \
     -f Containerfile.run
 ```
+
+> NOTE: if you're using semver (), you can use ```VERSION=$(semver info v)```

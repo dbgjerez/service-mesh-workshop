@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"film-storage/adapter"
 	"film-storage/domain/model"
 	"film-storage/interfaces"
 	"log"
@@ -23,22 +22,23 @@ func main() {
 	router.SetTrustedProxies(nil)
 	router.Use(cors.Default())
 
-	db := adapter.DBNewConnection()
-	filmRespository := model.NewRepository(db)
+	store := model.NewStore("data.json")
+	filmRepository, err := model.NewFilmRepository(store)
+	if err != nil {
+		log.Fatalf("Fails reading store %v", err)
+	}
 
 	v1 := router.Group("/api/v1")
 	{
-		h := interfaces.NewHealthcheckHandler(filmRespository)
+		h := interfaces.NewHealthcheckHandler(filmRepository)
 		v1.GET("/health", h.HealthcheckGetHandler())
 	}
 
 	film := router.Group("/api/v1/film")
 	{
-		f := interfaces.NewFilmHandler(filmRespository)
+		f := interfaces.NewFilmHandler(filmRepository)
 		film.GET("", f.FilmGetAllHandler())
 		film.GET("/:id", f.FilmFindByIdHandler())
-		film.DELETE("/:id", f.FilmDeleteByIdHandler())
-		film.POST("", f.FilmCreateHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {
@@ -58,7 +58,6 @@ func main() {
 
 	<-ctx.Done()
 	srv.Shutdown(ctx)
-	db.Close()
 	os.Exit(0)
 
 }

@@ -13,4 +13,4 @@ podman build \
     -f Containerfile.run
 ```
 
-> NOTE: if you're using semver (), you can use ```VERSION=$(semver info v)```
+> NOTE: if you're using semver (https://github.com/dbgjerez/semantic-versioning-cli), you can use ```VERSION=$(semver info v)```

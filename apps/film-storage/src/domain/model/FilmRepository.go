@@ -27,23 +27,16 @@ func (dao *FilmRepository) HealthCheck() error {
 	return nil
 }
 
-func (dao *FilmRepository) FindById(idFilm int) (*Film, error) {
-	films, err := dao.GetAll()
-	if err != nil {
-		return nil, err
-	}
+func (dao *FilmRepository) FindById(idFilm int) *Film {
+	films := dao.films
 	for _, f := range films {
 		if f.Id == idFilm {
-			return &f, nil
+			return &f
 		}
 	}
-	return nil, nil
+	return nil
 }
 
-func (dao *FilmRepository) GetAll() ([]Film, error) {
-	films, err := dao.store.ReadStore()
-	if err != nil {
-		return []Film{}, err
-	}
-	return films, nil
+func (dao *FilmRepository) GetAll() []Film {
+	return dao.films
 }

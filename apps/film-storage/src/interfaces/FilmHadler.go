@@ -31,22 +31,14 @@ func (handler *FilmHandler) FilmFindByIdHandler() func(c *gin.Context) {
 			// TODO: exception error
 			log.Fatalf("Not able to parse the id %s", err)
 		}
-		f, err := handler.repository.FindById(id)
-		if err != nil {
-			// TODO: exception error
-			log.Fatalf("Error al recuperar %s", err)
-		}
+		f := handler.repository.FindById(id)
 		c.JSON(http.StatusOK, f)
 	}
 }
 
 func (handler *FilmHandler) FilmGetAllHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
-		films, err := handler.repository.GetAll()
-		if err != nil {
-			// TODO: exception error
-			log.Fatalf("Error al recuperar %s", err)
-		}
+		films := handler.repository.GetAll()
 		c.JSON(http.StatusOK, films)
 	}
 }

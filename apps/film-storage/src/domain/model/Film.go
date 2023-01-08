@@ -1,8 +1,8 @@
 package model
 
 type Film struct {
-	Id       int    `json:"id,omitempty"`
-	Title    string `json:"title,omitempty"`
-	Duration int    `json:"duration,omitempty"`
-	Premium  bool   `json:"premium,omitempty"`
+	Id       int    `json:"id"`
+	Title    string `json:"title"`
+	Duration int    `json:"duration"`
+	Premium  bool   `json:"premium"`
 }

@@ -38,7 +38,7 @@ func main() {
 	{
 		f := interfaces.NewFilmHandler(filmRepository)
 		film.GET("", f.FilmGetAllHandler())
-		film.GET("/:id", f.FilmFindByIdHandler())
+		film.GET("/:username", f.FilmFindByIdHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {

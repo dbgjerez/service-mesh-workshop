@@ -27,10 +27,10 @@ func (dao *UserRepository) HealthCheck() error {
 	return nil
 }
 
-func (dao *UserRepository) FindById(idUser int) *User {
+func (dao *UserRepository) FindById(username string) *User {
 	Users := dao.users
 	for _, f := range Users {
-		if f.Id == idUser {
+		if f.Username == username {
 			return &f
 		}
 	}

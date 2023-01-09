@@ -1,16 +1,14 @@
 package interfaces
 
 import (
-	"log"
 	"net/http"
-	"strconv"
 	"user-storage/domain/model"
 
 	"github.com/gin-gonic/gin"
 )
 
 const (
-	ParamIDName = "id" // find by id
+	ParamIDName = "username" // find by id
 )
 
 type UserHandler struct {
@@ -23,13 +21,8 @@ func NewFilmHandler(dao *model.UserRepository) *UserHandler {
 
 func (handler *UserHandler) FilmFindByIdHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
-		filmId := c.Param(ParamIDName)
-		id, err := strconv.Atoi(filmId)
-		if err != nil {
-			// TODO: exception error
-			log.Fatalf("Not able to parse the id %s", err)
-		}
-		f := handler.repository.FindById(id)
+		username := c.Param(ParamIDName)
+		f := handler.repository.FindById(username)
 		c.JSON(http.StatusOK, f)
 	}
 }

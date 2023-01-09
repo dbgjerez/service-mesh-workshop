@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "username": "premium",
+        "subscription": "premium"
+    },
+    {
+        "id": 2,
+        "username": "normal",
+        "subscription": "normal"
+    }
+]

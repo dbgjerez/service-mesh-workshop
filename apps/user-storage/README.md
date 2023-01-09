@@ -1,8 +1,13 @@
-# Configuration
-|Variable|Description|
-|--|--|
-|MONGODB_HOST|mongodb://user:pass@host:port/?maxPoolSize=20&w=majority"|
-|MONGODB_DB_NAME|Database name|
-|MONGODB_MONITOR|if "true" log queries|
+Static user list. This application shows a user list with different type of subscriptions.
+
+# Build
+```zsh
+VERSION=0.2
+podman build \
+    --no-cache \
+    --build-arg version=$VERSION \
+    -t quay.io/dborrego/user-storage:$VERSION \
+    -f Containerfile
+```
 
 # API

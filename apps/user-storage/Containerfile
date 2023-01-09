@@ -3,7 +3,7 @@
 ##
 ## Build
 ##
-FROM golang:1.17-buster AS build
+FROM golang:1.18-buster AS build
 
 WORKDIR /app
 
@@ -13,19 +13,24 @@ RUN go mod download
 
 COPY src ./
 
-RUN CGO_ENABLED=0 go build -o /go/bin/app
+
+RUN go build -o /error-service
 
 ##
 ## Deploy
 ##
-FROM gcr.io/distroless/static-debian11
-
+FROM gcr.io/distroless/base-debian10
+ARG version
+ENV SERVICE_VERSION=${version}
+ENV SERVICE_NAME=error-service
 WORKDIR /
 
-COPY --from=build --chown=nonroot:nonroot /go/bin/app /
+COPY --from=build /error-service /error-service
 
 EXPOSE 8080
+
 USER nonroot:nonroot
+
 ENV GIN_MODE=release
 
-CMD ["/app"]
+ENTRYPOINT ["/error-service"]

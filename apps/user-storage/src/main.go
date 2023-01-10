@@ -32,6 +32,9 @@ func main() {
 	{
 		h := interfaces.NewHealthcheckHandler(filmRepository)
 		v1.GET("/health", h.HealthcheckGetHandler())
+
+		s := interfaces.NewInfoHandler()
+		v1.GET("/info", s.InfoGetHandler())
 	}
 
 	film := router.Group("/api/v1/user")

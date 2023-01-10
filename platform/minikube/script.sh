@@ -19,13 +19,6 @@ else
 	echo "👍 $FILE_ARGOCD_OPERATOR found"
 fi
 
-if [[ ! $PWD$FILE_MONGODB_OPERATOR ]] ; then
-	echo "❗You must execute the script from root git folder"
-	exit
-else
-	echo "👍 $FILE_MONGODB_OPERATOR found"
-fi
-
 echo "👍 [All checks ok]"
 echo "-------"
 
@@ -34,7 +27,6 @@ minikube start --cpus=4 --memory='16g' --vm-driver=kvm2
 curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.22.0/install.sh | bash -s v0.22.0
 
 kubectl create -f $PWD$FILE_ARGOCD_OPERATOR
-kubectl create -f $PWD$FILE_MONGODB_OPERATOR
 
 while  
 	! kubectl -n operators wait \

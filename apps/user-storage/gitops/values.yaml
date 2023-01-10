@@ -1,5 +1,5 @@
 service:
-  name: film-storage
+  name: user-storage
   image: quay.io/dborrego/user-storage
   version: no-default-value
 

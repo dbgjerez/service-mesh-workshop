@@ -4,3 +4,5 @@ resources:
   - operators.yaml
   - film-frontend.yaml
   - error-service.yaml
+  - film-storage.yaml
+  - user-storage.yaml

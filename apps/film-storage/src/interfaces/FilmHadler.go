@@ -11,8 +11,7 @@ import (
 
 const (
 	ParamIDName  = "id" // find by id
-	BodyDataName = "data"
-	BodyDataSize = "size"
+	ParamPremium = "premium"
 )
 
 type FilmHandler struct {
@@ -38,7 +37,13 @@ func (handler *FilmHandler) FilmFindByIdHandler() func(c *gin.Context) {
 
 func (handler *FilmHandler) FilmGetAllHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
-		films := handler.repository.GetAll()
+		premiumValue := c.DefaultQuery("premium", "false")
+		premium, err := strconv.ParseBool(premiumValue)
+		if err != nil {
+			// TODO: exception error
+			log.Fatalf("Not able to parse premium value %s", err)
+		}
+		films := handler.repository.GetAllByType(premium)
 		c.JSON(http.StatusOK, films)
 	}
 }

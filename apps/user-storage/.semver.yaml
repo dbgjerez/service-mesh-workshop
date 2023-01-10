@@ -3,15 +3,15 @@
     "artifactName": "user-storage",
     "version": {
       "major": 0,
-      "minor": 1,
+      "minor": 2,
       "patch": 0,
       "rc": 0,
-      "snapshot": false
+      "snapshot": true
     }
   },
   "config": {
     "snapshots": {
-      "enabled": true,
+      "enabled": false,
       "key": "SNAPSHOT"
     },
     "release-candidates": {

@@ -22,7 +22,7 @@ func main() {
 	router.SetTrustedProxies(nil)
 	router.Use(cors.Default())
 
-	store := model.NewStore("data.json")
+	store := model.NewStore()
 	filmRepository, err := model.NewUserRepository(store)
 	if err != nil {
 		log.Fatalf("Fails reading store %v", err)

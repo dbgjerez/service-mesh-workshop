@@ -5,6 +5,7 @@ type Info struct {
 }
 
 type App struct {
-	Service string `json:"name"`
-	Version string `json:"version"`
+	Service   string `json:"name"`
+	Version   string `json:"version"`
+	BuildTime string `json:"buildTime"`
 }

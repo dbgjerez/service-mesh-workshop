@@ -11,6 +11,7 @@ import (
 const (
 	serviceVersion = "SERVICE_VERSION"
 	serviceName    = "SERVICE_NAME"
+	buildTime      = "SERVICE_BUILD_TIME"
 )
 
 type InfoHandler struct {
@@ -21,6 +22,7 @@ func NewInfoHandler() (infoHandler *InfoHandler) {
 	app := model.App{}
 	app.Version = utils.GetEnv(serviceVersion, "")
 	app.Service = utils.GetEnv(serviceName, "")
+	app.BuildTime = utils.GetEnv(buildTime, "")
 	if app.Version == "" || app.Service == "" {
 		//FIXME: añadir error controlado
 	}

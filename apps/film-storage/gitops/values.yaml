@@ -1,0 +1,18 @@
+service:
+  name: film-storage
+  image: quay.io/dborrego/film-storage
+  version: no-default-value
+
+deployment:
+  replicas: 2
+  port: 8080
+  health:
+    liveness: /api/v1/health
+    readiness: /api/v1/health
+  resources: 
+    limits:
+      cpu: 250m
+      memory: 32Mi
+    requests:
+      cpu: 100m
+      memory: 8Mi

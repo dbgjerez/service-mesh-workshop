@@ -16,3 +16,6 @@ deployment:
     requests:
       cpu: 100m
       memory: 8Mi
+
+config:
+  env:

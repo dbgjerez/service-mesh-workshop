@@ -1,8 +1,17 @@
 # Configuration
-|Variable|Description|
-|--|--|
-|MONGODB_HOST|mongodb://user:pass@host:port/?maxPoolSize=20&w=majority"|
-|MONGODB_DB_NAME|Database name|
-|MONGODB_MONITOR|if "true" log queries|
+ENV_CONFIG_JSON_LOCATION
+
+
+# Build
+```zsh
+SERVICE_NAME=film-storage
+VERSION=$(semver info v)
+podman build \
+    --no-cache \
+    --build-arg version=$VERSION \
+    --build-arg serviceName=$SERVICE_NAME \
+    -t quay.io/dborrego/$SERVICE_NAME:$VERSION \
+    -f Containerfile
+```
 
 # API

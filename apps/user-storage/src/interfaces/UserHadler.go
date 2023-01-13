@@ -31,8 +31,9 @@ func (handler *UserHandler) FilmFindByIdHandler() func(c *gin.Context) {
 					Message: model.UserNotFound.Error(),
 				})
 			}
+		} else {
+			c.JSON(http.StatusOK, f)
 		}
-		c.JSON(http.StatusOK, f)
 	}
 }
 

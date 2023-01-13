@@ -6,3 +6,4 @@ resources:
   - error-service.yaml
   - film-storage.yaml
   - user-storage.yaml
+  - film-api.yaml

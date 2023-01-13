@@ -2,6 +2,7 @@ package interfaces
 
 import (
 	"net/http"
+	"user-storage/domain/dto"
 	"user-storage/domain/model"
 
 	"github.com/gin-gonic/gin"
@@ -22,7 +23,15 @@ func NewFilmHandler(dao *model.UserRepository) *UserHandler {
 func (handler *UserHandler) FilmFindByIdHandler() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		username := c.Param(ParamIDName)
-		f := handler.repository.FindById(username)
+		f, err := handler.repository.FindById(username)
+		if err != nil {
+			if err == model.UserNotFound {
+				c.JSON(http.StatusNotFound, dto.ErrorDTO{
+					Code:    404,
+					Message: model.UserNotFound.Error(),
+				})
+			}
+		}
 		c.JSON(http.StatusOK, f)
 	}
 }

@@ -4,3 +4,6 @@
 # v0.2 - 10/01/2023
 - Info endpoint
 - Read env var with default values
+
+# v0.3 - 13/01/2023
+- 404 when user not found

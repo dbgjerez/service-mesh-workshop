@@ -4,6 +4,8 @@ import (
 	"errors"
 )
 
+var UserNotFound = errors.New("User not found!")
+
 type UserRepository struct {
 	users []User
 	store *Store
@@ -27,14 +29,14 @@ func (dao *UserRepository) HealthCheck() error {
 	return nil
 }
 
-func (dao *UserRepository) FindById(username string) *User {
+func (dao *UserRepository) FindById(username string) (*User, error) {
 	Users := dao.users
 	for _, f := range Users {
 		if f.Username == username {
-			return &f
+			return &f, nil
 		}
 	}
-	return nil
+	return nil, UserNotFound
 }
 
 func (dao *UserRepository) GetAll() []User {

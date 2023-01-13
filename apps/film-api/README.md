@@ -1,5 +1,15 @@
 Microservice used to improve a legacy system
 
+# Configuration
+| Variable | Description |
+| ------ | ------ |
+|SERVICE_VERSION|Service version for info api|
+|SERVICE_NAME|Service name for info api|
+|SERVICE_BUILD_TIME|Build application time|
+|FILM_SERVICE_URL|Film service url|
+|USER_SERVICE_URL|User service url|
+
+
 # Build
 ```zsh
 SERVICE_NAME=film-api

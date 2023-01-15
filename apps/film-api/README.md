@@ -19,6 +19,15 @@ This microservice exposes a few endpoints:
 |/api/v1/health|Healthcheck uses to ensure that the application is running up rightly|
 |/api/v1/info|Exposes the microservice information|
 
+
+## Test
+To call with a normal user, use the following jwt token:
+
+```zsh
+TOKEN_NORMAL_USER=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibm9ybWFsIn0.laJaqfrA8WXGx3VOUaYilgT3j0aWT1VmDeb394zlwKw
+curl -H 'Authorization:'$TOKEN_NORMAL_USER film-api.dev-backend.k8s/api/v1/films
+```
+
 # Build
 ```zsh
 SERVICE_NAME=film-api

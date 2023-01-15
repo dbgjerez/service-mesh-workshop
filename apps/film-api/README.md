@@ -26,6 +26,15 @@ To call with a normal user, use the following jwt token:
 ```zsh
 TOKEN_NORMAL_USER=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibm9ybWFsIn0.laJaqfrA8WXGx3VOUaYilgT3j0aWT1VmDeb394zlwKw
 curl -H 'Authorization:'$TOKEN_NORMAL_USER film-api.dev-backend.k8s/api/v1/films
+[{"id":4,"title":"The Hobbit - An Unexpected Journey","duration":0},{"id":5,"title":"The Hobbit - The Desolation of Smaug","duration":0},{"id":6,"title":"The Hobbit - The Battle of the Five Armies","duration":0}]
+```
+
+Another option is to call as a premium user. In this case, you have to use a premium user, for example:
+
+```zsh
+TOKEN_PREMIUM_USER=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHJlbWl1bSJ9.mtZhdDIN6fpmWV0pOFeGotL6UJwVkrQ5gkYk6FHiED8
+curl -H 'Authorization:'$TOKEN_PREMIUM_USER film-api.dev-backend.k8s/api/v1/films
+[{"id":1,"title":"The Lord of the Rings - The Fellowship of the Ring","duration":0},{"id":2,"title":"The Lord of the Rings - The Two Towers","duration":0},{"id":3,"title":"The Lord of the Rings - The Return of the King","duration":0},{"id":4,"title":"The Hobbit - An Unexpected Journey","duration":0},{"id":5,"title":"The Hobbit - The Desolation of Smaug","duration":0},{"id":6,"title":"The Hobbit - The Battle of the Five Armies","duration":0}]
 ```
 
 # Build

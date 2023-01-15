@@ -29,7 +29,6 @@ ENV SERVICE_BUILD_TIME=${buildTime}
 WORKDIR /
 
 COPY --from=build /application /application
-COPY --from=build /app/data.json /data.json
 
 EXPOSE 8080
 

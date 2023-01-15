@@ -9,6 +9,15 @@ Microservice used to improve a legacy system
 |FILM_SERVICE_URL|Film service url|
 |USER_SERVICE_URL|User service url|
 
+# API
+
+This microservice exposes a few endpoints:
+
+| Endpoint | Description |
+| ------ | ------ |
+|/api/v1/films|Retrieves a JWT token with user information, from it get the user films|
+|/api/v1/health|Healthcheck uses to ensure that the application is running up rightly|
+|/api/v1/info|Exposes the microservice information|
 
 # Build
 ```zsh
@@ -23,3 +32,4 @@ podman build \
     -t quay.io/dborrego/$SERVICE_NAME:$VERSION \
     -f Containerfile
 ```
+

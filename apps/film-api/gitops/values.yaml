@@ -22,4 +22,4 @@ config:
     - name: FILM_SERVICE_URL
       value: film-storage/api/v1/film
     - name: USER_SERVICE_URL
-      value: user-storage/api/v1/user
+      value: user-storage/api/v1/user/

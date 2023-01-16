@@ -1,9 +1,11 @@
 import AppInfo from "../components/info/AppInfo";
-import connections from "../config/app.error.config.json"
+import connections from "../config/app.info.config.json"
 
 const Info = () => {
-    return connections.map(
-        conn => <div><AppInfo conn={conn} /></div>
+    return (
+        connections.map(
+            conn => <AppInfo conn={conn}/> 
+        )
     )
 };
 

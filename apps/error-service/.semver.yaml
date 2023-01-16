@@ -1,0 +1,29 @@
+{
+  "data": {
+    "artifactName": "error-service",
+    "version": {
+      "major": 0,
+      "minor": 2,
+      "patch": 2,
+      "rc": 0,
+      "snapshot": true
+    }
+  },
+  "config": {
+    "snapshots": {
+      "enabled": false,
+      "key": "SNAPSHOT"
+    },
+    "release-candidates": {
+      "enabled": false,
+      "key": ""
+    },
+    "gitflow": {
+      "enabled": false,
+      "branches": {
+        "snapshots": null,
+        "release-candidates": null
+      }
+    }
+  }
+}

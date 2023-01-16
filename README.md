@@ -8,14 +8,10 @@ This repository represents a Service Mesh workshop based on Istio.
 
 This repository contains four applications that will be used to demonstrate Istio capabilities.
 
-### FilmStorage
-Represent the use case of an old service that contains all the information of a database. 
+### film-frontend
 
-This service doesn't have a correct API, so we will need to use Istio filters to resolve some problems.
+### film-storage
 
-### ErrorService
-This service unifies the 
+### user-storage
 
-### FilmService
-
-### UserService
+### film-api

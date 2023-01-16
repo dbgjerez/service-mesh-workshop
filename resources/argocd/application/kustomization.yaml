@@ -2,4 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - operators.yaml
-  - app-mongodb.yaml
+  - film-frontend.yaml
+  - error-service.yaml
+  - film-storage.yaml
+  - user-storage.yaml
+  - film-api.yaml

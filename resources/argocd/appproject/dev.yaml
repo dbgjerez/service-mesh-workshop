@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: 'dev-backend'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-frontend'
+    server: 'https://kubernetes.default.svc'
+  sourceRepos:
+  - 'https://github.com/dbgjerez/service-mesh-workshop'

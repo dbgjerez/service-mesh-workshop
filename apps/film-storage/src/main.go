@@ -2,15 +2,15 @@ package main
 
 import (
 	"context"
+	"film-storage/domain/model"
+	"film-storage/interfaces"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"ta-candle-store/adapter"
-	"ta-candle-store/domain/model"
-	"ta-candle-store/interfaces"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,20 +18,30 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	db := adapter.DBNewConnection()
-	candleRespository := model.NewCandleRepository(db)
-
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
+	router.Use(cors.Default())
+
+	store := model.NewStore()
+	filmRepository, err := model.NewFilmRepository(store)
+	if err != nil {
+		log.Fatalf("Fails reading store %v", err)
+	}
 
 	v1 := router.Group("/api/v1")
 	{
-		h := interfaces.HealthcheckHandler{}
+		h := interfaces.NewHealthcheckHandler(filmRepository)
 		v1.GET("/health", h.HealthcheckGetHandler())
+
+		s := interfaces.NewInfoHandler()
+		v1.GET("/info", s.InfoGetHandler())
 	}
-	candle := router.Group("/api/v1/candle")
+
+	film := router.Group("/api/v1/film")
 	{
-		h := interfaces.NewCandleController(candleRespository)
-		candle.GET("/:id", h.GetCandle)
+		f := interfaces.NewFilmHandler(filmRepository)
+		film.GET("", f.FilmGetAllHandler())
+		film.GET("/:id", f.FilmFindByIdHandler())
 	}
 
 	router.NoRoute(func(c *gin.Context) {
@@ -51,7 +61,6 @@ func main() {
 
 	<-ctx.Done()
 	srv.Shutdown(ctx)
-	mq.Close()
-	db.Close()
 	os.Exit(0)
+
 }

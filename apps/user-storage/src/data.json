@@ -1,0 +1,10 @@
+[
+    {
+        "username": "premium",
+        "subscription": "premium"
+    },
+    {
+        "username": "normal",
+        "subscription": "normal"
+    }
+]

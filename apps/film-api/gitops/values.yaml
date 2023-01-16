@@ -1,0 +1,25 @@
+service:
+  name: film-api
+  image: quay.io/dborrego/film-api
+  version: no-default-value
+
+deployment:
+  replicas: 2
+  port: 8080
+  health:
+    liveness: /api/v1/health
+    readiness: /api/v1/health
+  resources: 
+    limits:
+      cpu: 250m
+      memory: 32Mi
+    requests:
+      cpu: 100m
+      memory: 8Mi
+
+config:
+  env:
+    - name: FILM_SERVICE_URL
+      value: http://film-storage/api/v1/film
+    - name: USER_SERVICE_URL
+      value: http://user-storage/api/v1/user/

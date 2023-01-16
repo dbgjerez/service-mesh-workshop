@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: film-frontend
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: dev-frontend
+  template:
+    metadata: 
+      name: '{{env}}-film-frontend'
+      labels: 
+        env: '{{env}}'
+        scope: frontend
+        type: app
+        name: 'film-frontend'
+    spec:
+      project: '{{env}}'
+      destination:
+        namespace: '{{namespace}}'
+        name: 'in-cluster'
+      source:
+        repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
+        path: apps/film-frontend/gitops
+        targetRevision: develop
+        helm:
+          valueFiles:
+            - '{{env}}.values.yaml'
+      syncPolicy:
+        automated: {}

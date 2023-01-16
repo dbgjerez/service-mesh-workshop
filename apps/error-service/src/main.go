@@ -11,6 +11,7 @@ func main() {
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
 	router.Use(cors.Default())
+
 	v1 := router.Group("/api/v1")
 	{
 		h := interfaces.HealthcheckHandler{}

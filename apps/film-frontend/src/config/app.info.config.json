@@ -1,0 +1,10 @@
+[
+    {
+        "service": "error-service",
+        "url": "http://error-service.dev-backend.k8s/api/v1/info"
+    },
+    {
+        "service": "film-storage",
+        "url": "http://localhost:8080/api/v1/info"
+    }
+]

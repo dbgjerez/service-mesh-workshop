@@ -3,4 +3,5 @@ kind: ArgoCD
 metadata:
   name: argocd
   namespace: argocd
-spec: {}
+spec: 
+  applicationSet: {}

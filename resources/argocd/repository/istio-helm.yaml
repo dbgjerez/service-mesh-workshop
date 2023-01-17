@@ -6,6 +6,7 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repository
   namespace: argocd
+  name: repo-helm-istio
 type: Opaque
 data:
   name: aXN0aW8=

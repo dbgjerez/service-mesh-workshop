@@ -22,7 +22,7 @@ fi
 echo "👍 [All checks ok]"
 echo "-------"
 
-minikube start --cpus=4 --memory='16g' --vm-driver=kvm2
+minikube start --cpus=6 --memory='20g' --vm-driver=kvm2
 
 minikube addons enable ingress
 

@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-base
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: dev-backend
+        version: 1.16.1
+  template:
+    metadata: 
+      name: '{{env}}-istio-base'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: istio
+        name: 'istio-base'
+    spec:
+      project: dev
+      source:
+        repoURL: 'https://istio-release.storage.googleapis.com/charts'
+        targetRevision: '{{version}}'
+        chart: base
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: istio-system
+      syncPolicy: {}

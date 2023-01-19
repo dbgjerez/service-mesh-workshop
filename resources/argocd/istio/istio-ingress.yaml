@@ -27,4 +27,5 @@ spec:
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: istio-system
-      syncPolicy: {}
+      syncPolicy:
+        automated: {}

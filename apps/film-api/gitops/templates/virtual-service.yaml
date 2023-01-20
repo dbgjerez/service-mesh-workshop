@@ -4,7 +4,6 @@ metadata:
   name: {{ .Values.service.name }}
 spec:
   hosts: 
-  - {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
   - {{ .Values.service.name }}
   gateways:
   - istio-system/dev-gateway

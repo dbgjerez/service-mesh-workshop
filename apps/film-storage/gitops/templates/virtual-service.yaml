@@ -6,7 +6,7 @@ spec:
   hosts:
   - {{ .Values.service.name }}.{{ .Release.Namespace }}
   gateways:
-  - istio-system/dev-gateway
+  - istio-ingress/dev-gateway
   http:
   - match:
     - uri:

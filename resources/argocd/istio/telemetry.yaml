@@ -21,7 +21,7 @@ spec:
     spec:
       project: dev
       source:
-        path: resources/istio/telemetry
+        path: resources/argocd/istio/telemetry
         repoURL: https://github.com/dbgjerez/service-mesh-workshop
         targetRevision: develop
       destination:

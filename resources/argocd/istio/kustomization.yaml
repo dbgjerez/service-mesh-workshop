@@ -5,3 +5,4 @@ resources:
   - istiod.yaml
   - istio-ingress.yaml
   - telemetry.yaml
+  - istio-ingress-gateway.yaml

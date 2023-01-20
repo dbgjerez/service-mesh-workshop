@@ -4,13 +4,13 @@ metadata:
   name: {{ .Values.service.name }}
 spec:
   hosts: 
-  - {{ .Values.service.name }}.{{ .Release.Namespace }}
+  - {{ .Values.service.name }}
   gateways:
   - istio-system/dev-gateway
   http:
   - match:
     - uri:
-        prefix: /api/v1/films
+        exact: /api/v1/films
     route:
     - destination:
         host: {{ .Values.service.name }}.{{ .Release.Namespace }}

@@ -6,7 +6,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - films
+  - dev-gateway
   http:
   - match:
     - uri:

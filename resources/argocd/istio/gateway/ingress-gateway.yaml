@@ -1,10 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: films
+  name: dev-gateway
 spec:
   selector:
-    # TODO: ingress to bootstrap with the istio provisioning
     istio: dev-istio-ingress # use istio default controller
   servers:
   - port:

@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
       - env: dev
-        namespace: dev-backend
+        namespace: istio-ingress
         version: 1.16.1
   template:
     metadata: 
@@ -26,6 +26,6 @@ spec:
         chart: gateway
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: istio-system
+        namespace: '{{namespace}}'
       syncPolicy:
         automated: {}

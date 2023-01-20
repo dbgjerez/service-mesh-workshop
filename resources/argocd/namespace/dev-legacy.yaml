@@ -4,4 +4,4 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: argocd
     istio-injection: enabled
-  name: dev-backend
+  name: dev-legacy

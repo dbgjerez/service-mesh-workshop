@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
       - env: dev
-        namespace: dev-backend
+        namespace: dev-legacy
   template:
     metadata: 
       name: '{{env}}-film-storage'

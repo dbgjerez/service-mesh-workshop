@@ -10,7 +10,7 @@ spec:
   http:
   - match:
     - uri:
-        exact: /api/v1/films
+        prefix: /api/v1/films
     route:
     - destination:
         host: {{ .Values.service.name }}.{{ .Release.Namespace }}

@@ -4,6 +4,7 @@ metadata:
   name: films
 spec:
   selector:
+    # TODO: ingress to bootstrap with the istio provisioning
     istio: dev-istio-ingress # use istio default controller
   servers:
   - port:

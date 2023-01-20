@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: telemetry
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: dev-backend
+        version: 1.16.1
+  template:
+    metadata: 
+      name: '{{env}}-telemetry'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: istio
+        name: 'telemetry'
+    spec:
+      project: dev
+      source:
+        path: resources/istio/telemetry
+        repoURL: https://github.com/dbgjerez/service-mesh-workshop
+        targetRevision: develop
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: istio-system
+      syncPolicy:
+        automated: {}

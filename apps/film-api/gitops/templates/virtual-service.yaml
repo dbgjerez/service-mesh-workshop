@@ -6,7 +6,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - dev-gateway
+  - istio-system/dev-gateway
   http:
   - match:
     - uri:

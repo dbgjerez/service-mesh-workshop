@@ -18,6 +18,7 @@ spec:
     metadata:
       labels:
         name: {{ .Values.service.name | quote }}
+        app: {{ .Values.service.name | quote }}
         ns: {{ .Release.Namespace | quote }}
         version: {{ .Values.service.version | quote }}
     spec:

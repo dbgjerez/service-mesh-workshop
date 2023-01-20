@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.service.name }}
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - films
+  http:
+  - match:
+    - uri:
+        prefix: /api/v1/users
+    route:
+    - destination:
+        host: {{ .Values.service.name }}

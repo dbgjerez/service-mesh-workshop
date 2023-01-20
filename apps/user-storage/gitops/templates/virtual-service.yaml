@@ -6,7 +6,7 @@ spec:
   hosts:
   - {{ .Values.service.name }}
   gateways:
-  - istio-system/dev-gateway
+  - dev-backend/dev-gateway
   http:
   - match:
     - uri:

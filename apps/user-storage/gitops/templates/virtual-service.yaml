@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.service.name }}
 spec:
   hosts:
-  - {{ .Values.service.name }}
+  - {{ .Values.service.name }}.{{ .Release.Namespace }}
   gateways:
   - dev-backend/dev-gateway
   http:

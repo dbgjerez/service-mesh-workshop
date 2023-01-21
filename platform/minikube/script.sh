@@ -24,7 +24,7 @@ echo "-------"
 
 minikube start --cpus=6 --memory='20g' --vm-driver=kvm2
 
-minikube addons enable ingress
+# minikube addons enable ingress
 
 kubectl --namespace ingress-nginx wait \
     --for=condition=ready pod \

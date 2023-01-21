@@ -9,7 +9,7 @@ spec:
       elements:
       - env: dev
         namespace: istio-ingress
-        version: 1.16.1
+        version: 1.15.4
   template:
     metadata: 
       name: '{{env}}-istio-ingress'

@@ -11,7 +11,7 @@ spec:
         namespace: istio-ingress
   template:
     metadata: 
-      name: '{{env}}-istio-ingress-gateway'
+      name: 'istio-ingress-gateway'
       labels: 
         env: '{{env}}'
         scope: backend

@@ -26,10 +26,10 @@ minikube start --cpus=6 --memory='20g' --vm-driver=kvm2
 
 # minikube addons enable ingress
 
-kubectl --namespace ingress-nginx wait \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component=controller \
-    --timeout=120s
+# kubectl --namespace ingress-nginx wait \
+#     --for=condition=ready pod \
+#     --selector=app.kubernetes.io/component=controller \
+#     --timeout=120s
 
 curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.22.0/install.sh | bash -s v0.22.0
 

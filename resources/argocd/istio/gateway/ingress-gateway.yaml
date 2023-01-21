@@ -4,7 +4,7 @@ metadata:
   name: dev-gateway
 spec:
   selector:
-    istio: dev-istio-ingress # use istio default controller
+    istio: ingress # use istio default controller
   servers:
   - port:
       number: 80

@@ -4,9 +4,9 @@ metadata:
   name: {{ .Values.service.name }}
 spec:
   hosts: 
-  - {{ .Values.service.name }}
+  - "*"
   gateways:
-  - istio-ingress/dev-gateway
+  - istio-system/dev-gateway
   http:
   - match:
     - uri:

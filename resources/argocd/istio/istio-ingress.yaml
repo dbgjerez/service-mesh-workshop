@@ -8,11 +8,11 @@ spec:
   - list:
       elements:
       - env: dev
-        namespace: istio-ingress
+        namespace: istio-system
         version: 1.15.4
   template:
     metadata: 
-      name: '{{env}}-istio-ingress'
+      name: 'istio-ingress'
       labels: 
         env: '{{env}}'
         scope: backend

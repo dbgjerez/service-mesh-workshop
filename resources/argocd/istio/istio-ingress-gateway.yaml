@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
       - env: dev
-        namespace: istio-ingress
+        namespace: istio-system
   template:
     metadata: 
       name: 'istio-ingress-gateway'

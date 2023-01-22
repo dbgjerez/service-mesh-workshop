@@ -22,4 +22,4 @@ config:
     - name: FILM_SERVICE_URL
       value: http://film-storage/api/v1/film
     - name: USER_SERVICE_URL
-      value: http://user-storage.dev-legacy.svc.cluster.local/api/v1/user/
+      value: http://user-storage/api/v1/user/

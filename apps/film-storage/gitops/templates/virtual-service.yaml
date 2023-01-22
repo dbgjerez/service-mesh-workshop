@@ -13,4 +13,4 @@ spec:
         prefix: /api/v1/films
     route:
     - destination:
-        host: {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+        host: {{ .Values.service.name }}

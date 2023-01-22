@@ -4,13 +4,13 @@ metadata:
   name: {{ .Values.service.name }}
 spec:
   hosts:
-  - {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+  - {{ .Values.service.name }}
   gateways:
-  - istio-system/dev-gateway
+  - mesh
   http:
   - match:
     - uri:
         prefix: /api/v1/users
     route:
     - destination:
-        host: {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+        host: {{ .Values.service.name }}

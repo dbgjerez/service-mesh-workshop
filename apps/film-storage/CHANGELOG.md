@@ -6,3 +6,7 @@
 - Query for premium users
 - Default values for environment variables
 - Info API endpoint
+
+# v0.3 - 23/01/2013
+- New version for workshop without changes
+

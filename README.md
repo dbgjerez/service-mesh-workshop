@@ -16,6 +16,10 @@ IP=$(kubectl get svc -n istio-system istio-ingress -o json | jq -r '.status.load
 
 Once we have the correct IP, we can execute the request:
 
+```bash
+TOKEN_NORMAL_USER=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibm9ybWFsIn0.laJaqfrA8WXGx3VOUaYilgT3j0aWT1VmDeb394zlwKw
+curl -H 'Authorization:'$TOKEN_NORMAL_USER $IP/api/v1/films
+```
 
 
 

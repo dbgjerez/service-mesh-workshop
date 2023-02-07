@@ -1,0 +1,24 @@
+- import_role:
+    name: openshift_common
+    tasks_from: delete_kubernetes_objects.yml
+  vars:
+    delete_kubernetes_objects:
+      - api_version: argoproj.io/v1alpha1
+        kind: ArgoCD
+
+- name: Delete GitOps operator
+  import_role:
+    name: openshift_common
+    tasks_from: delete_operator.yml
+  vars:
+    delete_operator_subscription_name: '{{ gitops_subscription_name }}'
+    delete_operator_subscription_namespace: '{{ gitops_subscription_namespace }}'
+
+- import_role:
+    name: openshift_common
+    tasks_from: delete_kubernetes_objects.yml
+  vars:
+    delete_kubernetes_objects:
+      - api_version: v1
+        kind: Namespace
+        name: openshift-gitops

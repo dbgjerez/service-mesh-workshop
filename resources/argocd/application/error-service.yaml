@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: error-service
-  namespace: argocd
 spec:
   generators:
   - list:
@@ -25,7 +24,7 @@ spec:
       source:
         repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
         path: apps/error-service/gitops
-        targetRevision: develop
+        targetRevision: add-openshift-bootstrap
         helm:
           valueFiles:
             - '{{env}}.values.yaml'

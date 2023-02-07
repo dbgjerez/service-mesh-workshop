@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: istio-ingress-gateway
-  namespace: argocd
 spec:
   generators:
   - list:
@@ -22,7 +21,7 @@ spec:
       source:
         path: resources/argocd/istio/gateway
         repoURL: https://github.com/dbgjerez/service-mesh-workshop
-        targetRevision: develop
+        targetRevision: add-openshift-bootstrap
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{namespace}}'

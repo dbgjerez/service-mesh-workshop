@@ -5,7 +5,6 @@ metadata:
     managed-by: argocd.argoproj.io
   labels:
     argocd.argoproj.io/secret-type: repository
-  namespace: argocd
   name: repo-helm-istio
 type: Opaque
 data:

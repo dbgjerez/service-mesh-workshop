@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: bootstrap
-  namespace: argocd
 spec:
   destination:
     namespace: argocd
@@ -11,6 +10,6 @@ spec:
   source:
     path: resources/argocd
     repoURL: https://github.com/dbgjerez/service-mesh-workshop
-    targetRevision: develop
+    targetRevision: add-openshift-bootstrap
   syncPolicy:
     automated: {}

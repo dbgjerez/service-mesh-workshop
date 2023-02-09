@@ -38,7 +38,7 @@ spec:
               containerPort: {{ .Values.deployment.port }}
           livenessProbe:
             grpc:
-              port: grpc
+              port: 8080
             failureThreshold: 10
           readinessProbe:
             grpc:

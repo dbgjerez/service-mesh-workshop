@@ -1,0 +1,18 @@
+service:
+  name: comment-service
+  image: quay.io/dborrego/comment-service
+  version: no-default-value
+
+deployment:
+  replicas: 2
+  port: 8080
+  health:
+    liveness: /Healthcheck.GetHealth
+    readiness: /Healthcheck.GetHealth
+  resources: 
+    limits:
+      cpu: 250m
+      memory: 32Mi
+    requests:
+      cpu: 100m
+      memory: 8Mi

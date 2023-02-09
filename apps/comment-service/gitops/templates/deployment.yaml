@@ -39,10 +39,12 @@ spec:
           livenessProbe:
             grpc:
               port: 8080
+            path: /HealthService.GetHealth
             failureThreshold: 10
           readinessProbe:
             grpc:
               port: 8080
+            path: /HealthService.GetHealth
             failureThreshold: 10
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}

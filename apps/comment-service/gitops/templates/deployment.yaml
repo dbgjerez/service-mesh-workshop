@@ -34,22 +34,15 @@ spec:
           {{- end }}
           {{- end }}
           ports:
-            - name: http
+            - name: grpc
               containerPort: {{ .Values.deployment.port }}
-              protocol: TCP
           livenessProbe:
             grpc:
-              port: 8080
-            httpGet:
-              path: {{ .Values.deployment.health.liveness }}
-              port: http
+              port: grpc
             failureThreshold: 10
           readinessProbe:
             grpc:
               port: 8080
-            httpGet:
-              path: {{ .Values.deployment.health.readiness }}
-              port: http
             failureThreshold: 10
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}

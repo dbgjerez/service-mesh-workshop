@@ -8,6 +8,6 @@ spec:
   gateways:
   - istio-system/dev-gateway
   http:
-    route:
+  - route:
     - destination:
         host: {{ .Values.service.name }}

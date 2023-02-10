@@ -18,7 +18,7 @@ Once we have the correct IP, we can execute the request:
 
 ```bash
 TOKEN_PREMIUM_USER=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHJlbWl1bSJ9.mtZhdDIN6fpmWV0pOFeGotL6UJwVkrQ5gkYk6FHiED8
-curl -H 'Authorization:'$TOKEN_NORMAL_USER $IP/api/v1/films
+curl -H 'Authorization:'$TOKEN_PREMIUM_USER $IP/api/v1/films
 ```
 
 ## Kiali

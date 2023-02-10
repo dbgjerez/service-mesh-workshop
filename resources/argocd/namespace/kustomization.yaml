@@ -7,3 +7,4 @@ resources:
   - dev-frontend.yaml
   - istio-ingress.yaml
   - istio-system.yaml
+  - dev-media.yaml

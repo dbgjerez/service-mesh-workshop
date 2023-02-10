@@ -23,3 +23,5 @@ config:
       value: http://film-storage.dev-legacy.svc.cluster.local/api/v1/film
     - name: USER_SERVICE_URL
       value: http://user-storage.dev-legacy.svc.cluster.local/api/v1/user/
+    - name: COMMENT_SERVICE_URL
+      value: http://comment-service.dev-media.svc.cluster.local

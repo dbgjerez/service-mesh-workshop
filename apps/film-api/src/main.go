@@ -1,7 +1,7 @@
 package main
 
 import (
-	"film-api/domain/repositories"
+	"film-api/domain/repository"
 	"film-api/interfaces"
 	"film-api/services"
 
@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	SERVER_PORT string = ":8080"
+	SERVER_PORT string = ":8000"
 )
 
 func main() {
@@ -19,8 +19,10 @@ func main() {
 	router.Use(cors.Default())
 
 	fService := services.NewFilmService(
-		repositories.NewFilmRepository(),
-		repositories.NewUserRepository())
+		repository.NewFilmRepository(),
+		repository.NewUserRepository(),
+		repository.NewCommentRepository(),
+	)
 	tService := services.NewTokenService()
 
 	v1 := router.Group("/api/v1")

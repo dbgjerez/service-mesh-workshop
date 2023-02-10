@@ -8,6 +8,7 @@ Microservice used to improve a legacy system
 |SERVICE_BUILD_TIME|Build application time|
 |FILM_SERVICE_URL|Film service url|
 |USER_SERVICE_URL|User service url|
+|COMMENT_SERVICE_URL|Comment service url|
 
 # API
 

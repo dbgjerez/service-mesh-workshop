@@ -1,4 +1,4 @@
-package repositories
+package repository
 
 import (
 	"encoding/json"
@@ -33,13 +33,13 @@ func NewFilmRepository() *FilmRepository {
 	}
 }
 
-func (dao *FilmRepository) GetFilms(premium bool) ([]dto.Film, error) {
+func (dao *FilmRepository) GetFilms(premium bool) ([]*dto.Film, error) {
 	res, err := dao.client.Get(*dao.url + "?premium=" + strconv.FormatBool(premium))
 	if err != nil {
 		log.Printf("http error calling %s: %v", *dao.url, err)
 	}
 	defer res.Body.Close()
-	var films []dto.Film
+	var films []*dto.Film
 	if err := json.NewDecoder(res.Body).Decode(&films); err != nil {
 		return nil, err
 	}

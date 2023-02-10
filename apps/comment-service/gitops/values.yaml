@@ -6,9 +6,6 @@ service:
 deployment:
   replicas: 2
   port: 8080
-  health:
-    liveness: /Healthcheck.GetHealth
-    readiness: /Healthcheck.GetHealth
   resources: 
     limits:
       cpu: 250m

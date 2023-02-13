@@ -29,18 +29,23 @@ func (fService *FilmService) FindFilmsByUser(username string) ([]*dto.Film, erro
 	}
 	premium := isPremium(&user)
 	films, err := fService.fClient.GetFilms(premium)
+	var ids []int32
 	for _, f := range films {
-		fComments := fService.cClient.FindComments(int32(f.Id))
-		comments := []dto.Comment{}
-		for _, c := range fComments.Comments {
-			comments = append(comments, dto.Comment{
-				Comment: c.Comment,
-				User: dto.UserComment{
-					IdUser: c.IdUser,
-				},
-			})
+		ids = append(ids, int32(f.Id))
+	}
+	comments, err := fService.cClient.FindComments(ids)
+
+	for _, c := range comments.Comments {
+		for _, f := range films {
+			if f.Id == int(c.IdObject) {
+				f.Comments = append(f.Comments, dto.Comment{
+					Comment: c.Comment,
+					User: dto.UserComment{
+						IdUser: c.IdUser,
+					},
+				})
+			}
 		}
-		f.Comments = comments
 	}
 	return films, err
 }

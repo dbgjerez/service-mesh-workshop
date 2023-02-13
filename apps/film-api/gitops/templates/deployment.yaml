@@ -4,7 +4,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.service.name }}
+  name: {{ .Values.service.name }}-{{ $version.tag }}
   namespace: {{ .Release.Namespace }}
   labels:
     name: {{ .Values.service.name | quote }}

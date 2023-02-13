@@ -10,7 +10,7 @@ metadata:
     name: {{ .Values.service.name | quote }}
     app: {{ .Values.service.name | quote }}
     ns: {{ .Release.Namespace | quote }}
-    version: {{ .Values.service.version | quote }}
+    version: {{ $version.tag | quote }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
@@ -23,7 +23,7 @@ spec:
         name: {{ .Values.service.name | quote }}
         app: {{ .Values.service.name | quote }}
         ns: {{ .Release.Namespace | quote }}
-        version: {{ .Values.service.version | quote }}
+        version: {{ $version.tag | quote }}
     spec:
       containers:
         - name: {{ .Values.service.name }}

@@ -1,6 +1,8 @@
 service:
   versions: 
     - tag: "0.1"
-      weight: 50
+      weight: 33
     - tag: "0.2"
-      weight: 50
+      weight: 33
+    - tag: "0.3"
+      weight: 34

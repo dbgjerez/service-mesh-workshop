@@ -1,7 +1,9 @@
 service:
   name: film-api
   image: quay.io/dborrego/film-api
-  version: no-default-value
+  versions: 
+    - tag: no-default-value
+      weight: no-default-value
 
 deployment:
   replicas: 2

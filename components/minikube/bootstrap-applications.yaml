@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap
+  name: bootstrap-applications
   namespace: argocd
 spec:
   destination:
@@ -9,8 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: resources/argocd
+    path: resources
     repoURL: https://github.com/dbgjerez/service-mesh-workshop
     targetRevision: develop
-  syncPolicy:
-    automated: {}

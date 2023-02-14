@@ -7,6 +7,6 @@ spec:
   channel: stable
   installPlanApproval: Automatic
   name: jaeger-product
-  source: redhat-operator-index
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: jaeger-operator.v1.39.0-3

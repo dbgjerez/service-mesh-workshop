@@ -7,6 +7,6 @@ spec:
   channel: stable
   installPlanApproval: Automatic
   name: kiali-ossm
-  source: redhat-operator-index
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: kiali-operator.v1.57.5

@@ -1,7 +1,7 @@
 PWD=$(pwd)
 FILE_ARGOCD_OPERATOR=/components/minikube/operators/argocd-operator.yaml
 FILE_ARGOCD_SERVER=/components/minikube/argocd-server.yaml
-FILE_ARGOCD_BOOTSTRAP=/components/minikube/bootstrap-applications.yaml
+FILE_ARGOCD_BOOTSTRAP=/platform/minikube/bootstrap-components.yaml
 SLEEP=5
 
 if [[ ! $PWD$FILE_ARGOCD_SERVER ]] ; then

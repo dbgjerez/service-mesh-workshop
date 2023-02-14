@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - appproject
   - istio
-  - namespace
+  - namespaces
   - operators
   - repository
   - bootstrap-applications.yaml

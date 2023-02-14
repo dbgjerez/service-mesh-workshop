@@ -20,7 +20,7 @@ spec:
     spec:
       project: dev
       source:
-        path: resources/argocd/istio/gateway
+        path: components/minikube/istio/gateway
         repoURL: https://github.com/dbgjerez/service-mesh-workshop
         targetRevision: develop
       destination:

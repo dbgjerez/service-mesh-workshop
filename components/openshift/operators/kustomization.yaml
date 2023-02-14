@@ -1,0 +1,5 @@
+resources:
+- jaeger-subscription.yaml
+- kiali-subscription.yaml
+- openshift-service-mesh-subscription.yaml
+- openshift-gitops.yaml

@@ -11,6 +11,6 @@ spec:
   source:
     path: components/openshift
     repoURL: https://github.com/dbgjerez/service-mesh-workshop
-    targetRevision: develop
+    targetRevision: feature/ocp
   syncPolicy:
     automated: {}

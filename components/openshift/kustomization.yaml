@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - app-operators.yaml
   - app-appprojects.yaml
+  - app-servicemesh.yaml

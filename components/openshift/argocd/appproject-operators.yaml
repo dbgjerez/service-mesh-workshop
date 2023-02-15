@@ -2,13 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: operators
-  namespace: argocd
+  namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
   destinations:
-  - namespace: 'argocd'
+  - namespace: 'openshift-gitops'
     server: 'https://kubernetes.default.svc'
   sourceRepos:
   - 'https://github.com/dbgjerez/service-mesh-workshop'

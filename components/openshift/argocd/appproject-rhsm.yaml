@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: service-mesh
-  namespace: argocd
+  namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
   - group: '*'

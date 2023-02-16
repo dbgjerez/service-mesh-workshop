@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - smcp.yaml
   - smm.yaml
+  - smmr.yaml

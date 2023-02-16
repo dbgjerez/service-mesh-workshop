@@ -11,4 +11,4 @@ spec:
   source:
     path: resources
     repoURL: https://github.com/dbgjerez/service-mesh-workshop
-    targetRevision: develop
+    targetRevision: feature/ocp

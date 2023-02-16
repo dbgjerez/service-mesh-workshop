@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - appproject-operators.yaml
 - appproject-rhsm.yaml
+- appproject-dev.yaml

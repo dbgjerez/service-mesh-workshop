@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: 'dev-legacy'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-backend'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-frontend'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-media'
+    server: 'https://kubernetes.default.svc'
+  sourceRepos:
+  - 'https://github.com/dbgjerez/service-mesh-workshop'

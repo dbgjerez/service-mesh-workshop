@@ -5,3 +5,4 @@ resources:
   - app-operators.yaml
   - app-appprojects.yaml
   - app-servicemesh.yaml
+  - bootstrap-applications.yaml

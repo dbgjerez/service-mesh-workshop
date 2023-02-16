@@ -24,7 +24,6 @@ spec:
         app: {{ .Values.service.name | quote }}
         ns: {{ .Release.Namespace | quote }}
         version: {{ $version.tag | quote }}
-      annotations:
         sidecar.istio.io/inject: 'true'
     spec:
       containers:

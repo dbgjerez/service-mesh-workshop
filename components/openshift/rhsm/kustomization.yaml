@@ -4,3 +4,4 @@ resources:
   - smcp.yaml
   - smm.yaml
   - smmr.yaml
+  - route.yaml

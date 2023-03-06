@@ -9,6 +9,6 @@ spec:
         number: 80
         protocol: HTTP
       hosts: 
-        - "istio-system-dev-gateway-525eca1d5089dbdc-istio-system.apps.cluster-nhbgd.nhbgd.sandbox1866.opentlc.com"
+        - "*"
   selector:
     istio: ingressgateway

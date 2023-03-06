@@ -4,9 +4,9 @@ metadata:
   name: {{ .Values.service.name }}
 spec:
   hosts: 
-  - "*"
+  - film-api
   gateways:
-  - istio-system/dev-gateway
+  - backend-gateway
   http:
   - match:
     - uri:

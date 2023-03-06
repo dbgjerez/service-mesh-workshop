@@ -1,0 +1,12 @@
+kind: Gateway
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: backend-gateway
+spec:
+  servers:
+    - port:
+        name: http
+        number: 80
+        protocol: HTTP
+      hosts: 
+        - film-api.dev-backend.svc.cluster.local

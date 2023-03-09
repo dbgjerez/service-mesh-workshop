@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     name: {{ .Values.service.name | quote }}
+    app: {{ .Values.service.name | quote }}
     ns: {{ .Release.Namespace | quote }}
     version: {{ .Values.service.version | quote }}
 spec:
@@ -17,8 +18,11 @@ spec:
     metadata:
       labels:
         name: {{ .Values.service.name | quote }}
+        app: {{ .Values.service.name | quote }}
         ns: {{ .Release.Namespace | quote }}
         version: {{ .Values.service.version | quote }}
+      annotations:
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - name: {{ .Values.service.name }}

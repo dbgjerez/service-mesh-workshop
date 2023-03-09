@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-ingress-gateway
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: istio-system
+  template:
+    metadata: 
+      name: 'istio-ingress-gateway'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: istio
+        name: 'istio-ingress-gateway'
+    spec:
+      project: dev
+      source:
+        path: components/minikube/istio/gateway
+        repoURL: https://github.com/dbgjerez/service-mesh-workshop
+        targetRevision: develop
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated: {}

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operators
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-operators
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: components/openshift/operators
+    repoURL: https://github.com/dbgjerez/service-mesh-workshop
+    targetRevision: feature/ocp
+  syncPolicy:
+    automated: {}

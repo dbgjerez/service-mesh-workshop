@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-ingress
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: istio-system
+        version: 1.15.4
+  template:
+    metadata: 
+      name: 'istio-ingress'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: istio
+        name: 'istio-ingress'
+    spec:
+      project: dev
+      source:
+        repoURL: 'https://istio-release.storage.googleapis.com/charts'
+        targetRevision: '{{version}}'
+        chart: gateway
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated: {}

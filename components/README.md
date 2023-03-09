@@ -1,0 +1,1 @@
+day 2 => componenets as argocd, istio, etc

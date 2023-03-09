@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: 'dev-legacy'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-backend'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-frontend'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'istio-ingress'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'istio-system'
+    server: 'https://kubernetes.default.svc'
+  - namespace: 'dev-media'
+    server: 'https://kubernetes.default.svc'
+  sourceRepos:
+  - 'https://github.com/dbgjerez/service-mesh-workshop'
+  - 'https://istio-release.storage.googleapis.com/charts'

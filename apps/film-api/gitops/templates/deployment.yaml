@@ -1,12 +1,16 @@
+{{- range .Values.service.versions }}
+{{- $version := . -}}
+{{- with $ }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.service.name }}
+  name: {{ .Values.service.name }}-{{ $version.tag }}
   namespace: {{ .Release.Namespace }}
   labels:
     name: {{ .Values.service.name | quote }}
+    app: {{ .Values.service.name | quote }}
     ns: {{ .Release.Namespace | quote }}
-    version: {{ .Values.service.version | quote }}
+    version: {{ $version.tag | quote }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
@@ -17,12 +21,15 @@ spec:
     metadata:
       labels:
         name: {{ .Values.service.name | quote }}
+        app: {{ .Values.service.name | quote }}
         ns: {{ .Release.Namespace | quote }}
-        version: {{ .Values.service.version | quote }}
+        version: {{ $version.tag | quote }}
+      annotations:
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - name: {{ .Values.service.name }}
-          image: {{ .Values.service.image }}:{{ .Values.service.version }}
+          image: {{ .Values.service.image }}:{{ $version.tag }}
           env:
           {{- range .Values.config.env }}
           {{- $envItem := . -}}
@@ -47,3 +54,6 @@ spec:
             failureThreshold: 10
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
+---
+{{- end }}
+{{- end }}

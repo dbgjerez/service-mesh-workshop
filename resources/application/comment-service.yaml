@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: comment-service
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: dev-media
+  template:
+    metadata: 
+      name: '{{env}}-comment-service'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: app
+        name: 'comment-service'
+    spec:
+      project: '{{env}}'
+      destination:
+        namespace: '{{namespace}}'
+        name: 'in-cluster'
+      source:
+        repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
+        path: apps/comment-service/gitops
+        targetRevision: develop
+        helm:
+          valueFiles:
+            - '{{env}}.values.yaml'
+      syncPolicy:
+        automated: {}

@@ -1,7 +1,9 @@
 service:
   name: film-api
   image: quay.io/dborrego/film-api
-  version: no-default-value
+  versions: 
+    - tag: no-default-value
+      weight: no-default-value
 
 deployment:
   replicas: 2
@@ -20,6 +22,8 @@ deployment:
 config:
   env:
     - name: FILM_SERVICE_URL
-      value: http://film-storage/api/v1/film
+      value: http://film-storage.dev-legacy.svc.cluster.local/api/v1/film
     - name: USER_SERVICE_URL
-      value: http://user-storage/api/v1/user/
+      value: http://user-storage.dev-legacy.svc.cluster.local/api/v1/user/
+    - name: COMMENT_SERVICE_URL
+      value: comment-service.dev-media.svc.cluster.local:80

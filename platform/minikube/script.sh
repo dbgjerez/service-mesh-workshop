@@ -1,8 +1,7 @@
 PWD=$(pwd)
-FILE_ARGOCD_OPERATOR=/resources/operators/argocd-operator.yaml
-FILE_MONGODB_OPERATOR=/resources/operators/mongodb-operator.yaml
-FILE_ARGOCD_SERVER=/resources/argocd/server.yaml
-FILE_ARGOCD_BOOTSTRAP=/resources/argocd/bootstrap.yaml
+FILE_ARGOCD_OPERATOR=/components/minikube/operators/argocd-operator.yaml
+FILE_ARGOCD_SERVER=/components/minikube/argocd-server.yaml
+FILE_ARGOCD_BOOTSTRAP=/platform/minikube/bootstrap-components.yaml
 SLEEP=5
 
 if [[ ! $PWD$FILE_ARGOCD_SERVER ]] ; then
@@ -22,14 +21,14 @@ fi
 echo "👍 [All checks ok]"
 echo "-------"
 
-minikube start --cpus=4 --memory='16g' --vm-driver=kvm2
+minikube start --cpus=6 --memory='20g' --vm-driver=kvm2
 
-minikube addons enable ingress
+# minikube addons enable ingress
 
-kubectl --namespace ingress-nginx wait \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component=controller \
-    --timeout=120s
+# kubectl --namespace ingress-nginx wait \
+#     --for=condition=ready pod \
+#     --selector=app.kubernetes.io/component=controller \
+#     --timeout=120s
 
 curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.22.0/install.sh | bash -s v0.22.0
 

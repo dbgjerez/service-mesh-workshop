@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ .Values.service.name }}
+spec:
+  host: {{ .Values.service.name }}
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+{{- range .Values.service.versions }}
+{{- $version := . -}}
+{{- with $ }}
+  - name: {{ ( lower $version.tag ) | replace "." "" | quote }}
+    labels:
+      version: {{ ( lower $version.tag ) | quote }}
+{{- end }}
+{{- end }}

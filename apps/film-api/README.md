@@ -8,6 +8,7 @@ Microservice used to improve a legacy system
 |SERVICE_BUILD_TIME|Build application time|
 |FILM_SERVICE_URL|Film service url|
 |USER_SERVICE_URL|User service url|
+|COMMENT_SERVICE_URL|Comment service url|
 
 # API
 
@@ -25,7 +26,8 @@ To call with a normal user, use the following jwt token:
 
 ```zsh
 TOKEN_NORMAL_USER=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibm9ybWFsIn0.laJaqfrA8WXGx3VOUaYilgT3j0aWT1VmDeb394zlwKw
-curl -H 'Authorization:'$TOKEN_NORMAL_USER film-api.dev-backend.k8s/api/v1/films
+HOST_API_FILMS=film-api.dev-backend.k8s/api/v1/films
+curl -H 'Authorization:'$TOKEN_NORMAL_USER $HOST_API_FILMS
 [{"id":4,"title":"The Hobbit - An Unexpected Journey","duration":0},{"id":5,"title":"The Hobbit - The Desolation of Smaug","duration":0},{"id":6,"title":"The Hobbit - The Battle of the Five Armies","duration":0}]
 ```
 

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap-components
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: components/minikube
+    repoURL: https://github.com/dbgjerez/service-mesh-workshop
+    targetRevision: develop
+  syncPolicy:
+    automated: {}

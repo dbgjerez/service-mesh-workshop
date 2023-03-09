@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: film-api
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: dev-backend
+  template:
+    metadata: 
+      name: '{{env}}-film-api'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: app
+        name: 'film-api'
+    spec:
+      project: '{{env}}'
+      destination:
+        namespace: '{{namespace}}'
+        name: 'in-cluster'
+      source:
+        repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
+        path: apps/film-api/gitops
+        targetRevision: develop
+        helm:
+          valueFiles:
+            - '{{env}}.values.yaml'
+      syncPolicy:
+        automated: {}

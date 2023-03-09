@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  namespace: argocd
+  name: repo-helm-istio
+type: Opaque
+data:
+  name: aXN0aW8=
+  project: ZGV2
+  type: aGVsbQ==
+  url: aHR0cHM6Ly9pc3Rpby1yZWxlYXNlLnN0b3JhZ2UuZ29vZ2xlYXBpcy5jb20vY2hhcnRz

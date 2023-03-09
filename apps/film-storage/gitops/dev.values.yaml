@@ -1,2 +1,4 @@
 service:
-  version: 0.2
+  versions: 
+    - tag: "0.2"
+      weight: 100

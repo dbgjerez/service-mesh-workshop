@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.service.name }}
+spec:
+  hosts: 
+  - {{ .Values.service.name }}
+  gateways:
+  - istio-system/dev-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/v1/films
+    route:
+{{- range .Values.service.versions }}
+{{- $version := . -}}
+{{- with $ }}
+    - destination:
+        host: {{ .Values.service.name }}
+        subset: {{ ( lower $version.tag ) | replace "." "" | quote }}
+      weight: {{ $version.weight }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ .Values.service.name | quote }}
+    app: {{ .Values.service.name | quote }}
+    ns: {{ .Release.Namespace | quote }}
+    version: {{ .Values.service.version | quote }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      name: {{ .Values.service.name | quote }}
+      ns: {{ .Release.Namespace | quote }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Values.service.name | quote }}
+        app: {{ .Values.service.name | quote }}
+        ns: {{ .Release.Namespace | quote }}
+        version: {{ .Values.service.version | quote }}
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+        - name: {{ .Values.service.name }}
+          image: {{ .Values.service.image }}:{{ .Values.service.version }}
+          env:
+          {{- range .Values.config.env }}
+          {{- $envItem := . -}}
+          {{- with $ }}
+            - name: {{ $envItem.name | upper |  replace "-" "_" | quote}}
+              value: {{ $envItem.value | quote }}
+          {{- end }}
+          {{- end }}
+          ports:
+            - name: grpc
+              containerPort: {{ .Values.deployment.port }}
+          livenessProbe:
+            exec:
+              command: ["/bin/grpc_health_probe", "-addr=:8080"]
+          readinessProbe:
+            exec:
+              command: ["/bin/grpc_health_probe", "-addr=:8080"]
+          resources:
+            {{- toYaml .Values.deployment.resources | nindent 12 }}

@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- jaeger-subscription.yaml
+- kiali-subscription.yaml
+- openshift-service-mesh-subscription.yaml
+- openshift-gitops.yaml

@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: user-storage
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: dev-legacy
+  template:
+    metadata: 
+      name: '{{env}}-user-storage'
+      labels: 
+        env: '{{env}}'
+        scope: backend
+        type: app
+        name: 'user-storage'
+    spec:
+      project: '{{env}}'
+      destination:
+        namespace: '{{namespace}}'
+        name: 'in-cluster'
+      source:
+        repoURL: 'https://github.com/dbgjerez/service-mesh-workshop'
+        path: apps/user-storage/gitops
+        targetRevision: develop
+        helm:
+          valueFiles:
+            - '{{env}}.values.yaml'
+      syncPolicy:
+        automated: {}

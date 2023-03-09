@@ -1,0 +1,14 @@
+kind: Gateway
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: dev-gateway
+spec:
+  servers:
+    - port:
+        name: http
+        number: 80
+        protocol: HTTP
+      hosts: 
+        - "*"
+  selector:
+    istio: ingressgateway

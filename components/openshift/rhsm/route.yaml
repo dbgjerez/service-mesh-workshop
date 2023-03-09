@@ -7,8 +7,5 @@ spec:
   to:
     kind: Service
     name: istio-ingressgateway
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: Redirect
   port:
-    targetPort: http2
+    targetPort: 8080

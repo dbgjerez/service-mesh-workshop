@@ -1,15 +1,25 @@
-day 0 -> provisioning
+This folder contains all the resources necessary to start up the cluster components. 
 
-# OpenShift
+# Install ArgoCD operator
 
-## Install ArgoCD operator
+ArgoCD orchestrates the components and applications installation. If we don't have it in our cluster, we have to install it using the ```OpenShift GitOps Operator```
 
 ```bash
-oc apply -f ../components/openshift/operators/openshift-gitops.yaml
+oc apply -f ../../components/openshift/operators/openshift-gitops.yaml
 ```
 
-## Grant roles to ArgoCD
+# Grant roles to ArgoCD
 
-## Bootstrap Application
+We will install some namespaces and operators, so we need grant cluster admin roles to ArgoCD controller
 
-# Minikube
+```bash
+oc apply -f admin-clusterrolebinding.yaml
+```
+
+# Bootstrap Application
+
+Now, we can apply the Bootstrap ArgoCD application. This application will create 
+
+```bash
+oc apply -f bootstrap-components.yaml
+```

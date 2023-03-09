@@ -2,10 +2,11 @@ This repository represents a Service Mesh workshop based on Istio.
 
 # Bootstrap
 
-## Minikube
-
 ## Openshift
-[Openshift Bootstrap](platform/README.md)
+[Openshift Bootstrap](platform/openshift/README.md)
+
+## Minikube
+[Minikube Bootstrap](platform/minikube/README.md)
 
 # Steps
 

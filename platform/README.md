@@ -1,15 +1,7 @@
 day 0 -> provisioning
 
-# OpenShift
+## Openshift
+[Openshift Bootstrap](openshift/README.md)
 
-## Install ArgoCD operator
-
-```bash
-oc apply -f ../components/openshift/operators/openshift-gitops.yaml
-```
-
-## Grant roles to ArgoCD
-
-## Bootstrap Application
-
-# Minikube
+## Minikube
+[Minikube Bootstrap](minikube/README.md)

@@ -24,6 +24,10 @@ Now, we can apply the Bootstrap ArgoCD application. This application will create
 oc apply -f bootstrap-components.yaml
 ```
 
+This application creates the following applications with his resources:
+
+![Bootstrap application components](../../images/argocd-bootstrap-componets.png)
+
 # Check the installation
 
 We have to ask for the password and the URL:

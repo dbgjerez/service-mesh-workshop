@@ -6,3 +6,6 @@ resources:
   - smmr.yaml
   - route.yaml
   - gateway.yaml
+  - smm-dev-legacy.yaml
+  - smm-dev-media.yaml
+  - smm-dev-backend.yaml

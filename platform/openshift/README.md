@@ -23,3 +23,15 @@ Now, we can apply the Bootstrap ArgoCD application. This application will create
 ```bash
 oc apply -f bootstrap-components.yaml
 ```
+
+# Check the installation
+
+We have to ask for the password and the URL:
+
+```bash
+oc get route -n openshift-gitops openshift-gitops-server --no-headers | awk '{print $2}'
+```
+
+```bash
+oc -n openshift-gitops get secret openshift-gitops-cluster -o json | jq -r '.data["admin.password"]' | base64 -d
+```

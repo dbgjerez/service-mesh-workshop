@@ -1,0 +1,11 @@
+= Welcome to Service Mesh Workshop
+:page-layout: home
+:!sectids:
+
+[.text-center.strong]
+== Manage a Service Mesh Architecture
+
+A Service Mesh tutorial based on Red Hat Service Mesh and Istio.
+
+
+

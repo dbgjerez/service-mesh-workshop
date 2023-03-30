@@ -1,0 +1,35 @@
+* xref:01-introduction.adoc[1. Introduction]
+** xref:01-introduction.adoc#prerequisite[Prerequisites]
+** xref:01-introduction.adoc#k8s[Local installation]
+** xref:01-introduction.adoc#ocp[Openshift]
+
+* xref:02-concepts.adoc[2. Concepts]
+** xref:02-concepts.adoc#architecture[Architecture]
+** xref:02-concepts.adoc#components[Components]
+** xref:02-concepts.adoc#objects[Istio objects]
+
+* xref:03-setup.adoc[3. Setup]
+** xref:03-setup.adoc#operator[Operator]
+** xref:03-setup.adoc#helm[Helm]
+
+* xref:04-applications.adoc[4. Applications]
+** xref:04-applications.adoc#demo[Demo architecture]
+** xref:04-applications.adoc#routing[Routing]
+** xref:04-applications.adoc#newversion[New application version]
+*** xref:04-applications.adoc#bluegreen[Blue/Green]
+*** xref:04-applications.adoc#canary[Canary]
+
+* xref:05-traffic-management.adoc[5. Traffic Management]
+** xref:05-traffic-management.adoc#timeouts[Timeouts]
+** xref:05-traffic-management.adoc#retries[Retries]
+** xref:05-traffic-management.adoc#circuitbreaker[Circuit breaker]
+** xref:05-traffic-management.adoc#faultinjection[Fault ijection]
+
+* xref:06-security.adoc[6. Security]
+** xref:06-security.adoc#mtls[Mutual TLS]
+** xref:06-security.adoc#authentication[Authentication]
+** xref:06-security.adoc#authorization[Authorization]
+
+* xref:07-observability.adoc[7. Observability]
+
+* xref:08-extensibility.adoc[8. Extensibility]

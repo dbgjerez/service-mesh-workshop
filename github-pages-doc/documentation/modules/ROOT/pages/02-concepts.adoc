@@ -1,0 +1,20 @@
+= Concepts
+include::_attributes.adoc[]
+
+[#architecture]
+== Architecture
+
+=== Istio Architecture
+// TODO
+
+=== RHSM Architecture
+// TODO
+
+[#components]
+== Istio components
+// TODO
+
+[#objects]
+== Istio objects
+// TODO
+

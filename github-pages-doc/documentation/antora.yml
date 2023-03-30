@@ -1,0 +1,7 @@
+name: workshop-service-mesh-doc
+title: Service Mesh workshop
+version: master
+nav:
+  - modules/ROOT/nav.adoc
+
+start_page: ROOT:index.adoc

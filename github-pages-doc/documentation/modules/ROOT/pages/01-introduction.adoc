@@ -1,0 +1,50 @@
+= Setup
+include::_attributes.adoc[]
+
+[#prerequisite]
+== Prerequisite CLI tools
+
+Cli like oc, kubectl, minikube, crc, helm, etc
+
+// include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
+// include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
+
+[#k8s]
+== Setup Kubernetes
+
+:profile: my_profile
+
+// include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
+
+[tabs, subs="attributes+,+macros"]	
+====	
+Minikube::	
++	
+--	
+// TODO
+Minikube installation
+--
+OpenShift CRC::	
++	
+--	
+// TODO
+Openshift CRC installation
+--
+OpenShift::	
++	
+--
+// TODO
+Openshift installed
+--
+====
+
+[#sources]
+== Get workshop sources
+// TODO
+Git url, etc
+
+[#documentation]
+== Official documentation
+
+// TODO
+Include documentation of official sites like Istio, Kubernetes, Red Hat, etc.

@@ -1,0 +1,22 @@
+= Applications
+include::_attributes.adoc[]
+
+[#demo]
+== Demo architecture
+// TODO
+
+[#routing]
+== Routing
+// TODO
+
+[#newversion]
+== Istio objects
+// TODO
+
+[#bluegreen]
+=== Blue/Green
+// TODO
+
+[#canary]
+=== Canary
+// TODO

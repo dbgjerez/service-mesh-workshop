@@ -10,7 +10,7 @@ content:
   sources:
     - url: git@github.com:dbgjerez/service-mesh-workshop
       tags: []
-      branches: [master]
+      branches: [main]
       start_path: github-pages-doc/documentation
 
 asciidoc:

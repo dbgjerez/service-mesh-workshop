@@ -1,6 +1,6 @@
 name: workshop-service-mesh
 title: Service Mesh Workshop
-version: master
+version: main
 nav:
   - modules/ROOT/nav.adoc
 

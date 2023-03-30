@@ -1,5 +1,5 @@
 name: workshop-service-mesh
-title: Service Mesh workshop
+title: Service Mesh Workshop
 version: master
 nav:
   - modules/ROOT/nav.adoc

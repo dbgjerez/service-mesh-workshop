@@ -3,12 +3,12 @@ runtime:
 
 site:
   title: "Workshop Service Mesh"
-  url: https://github.com/dbgjerez/workshop-service-mesh-doc
-  start_page: workshop-service-mesh-doc::index.adoc
+  url: https://github.com/dbgjerez/service-mesh-workshop
+  start_page: service-mesh-workshop::index.adoc
 
 content:
   sources:
-    - url: git@github.com:dbgjerez/workshop-service-mesh-doc
+    - url: git@github.com:dbgjerez/service-mesh-workshop
       tags: []
       branches: [master]
       start_path: github-pages-doc/documentation

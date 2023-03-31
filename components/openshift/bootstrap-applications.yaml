@@ -12,3 +12,7 @@ spec:
     path: resources
     repoURL: https://github.com/dbgjerez/service-mesh-workshop
     targetRevision: feature/ocp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -29,4 +29,6 @@ spec:
           valueFiles:
             - '{{env}}.values.yaml'
       syncPolicy:
-        automated: {}
+        automated:
+          prune: true
+          selfHeal: true
